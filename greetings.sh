@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./variables.sh
+source $PROJ_ROOT_DIR/utility.sh
 
 dialog_greetings() {
   $DIALOG --title "Greetings" --msgbox "Welcome aboard" 10 40
@@ -18,9 +18,4 @@ dialog_greetings() {
   esac
 }
 
-if declare -f "$1" >/dev/null; then
-  "$@"
-else
-  echo "'$1' is not a known function name" >&2
-  exit $RC_ERROR
-fi
+RESOLVE_FUNC_CALL $1

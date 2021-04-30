@@ -18,3 +18,13 @@
 
 : ${RC_OK=0}
 : ${RC_ERROR=1}
+
+# RESOLVE_FUNC_CALL $1
+RESOLVE_FUNC_CALL() {
+  if declare -f "$1" >/dev/null; then
+    "$@"
+  else
+    echo "'$1' is not a known function name" >&2
+    exit $RC_ERROR
+  fi
+}
