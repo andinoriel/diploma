@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $PROJ_ROOT_DIR/utility.sh
+source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_main() {
   while true; do
@@ -21,12 +21,15 @@ dialog_modules_main() {
         ;;
       esac
       ;;
+
     $DIALOG_CANCEL)
       return $DIALOG_CANCEL
       ;;
+
     $DIALOG_ESC)
       exit
       ;;
+
     esac
 
   done

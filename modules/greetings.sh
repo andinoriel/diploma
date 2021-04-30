@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $PROJ_ROOT_DIR/utility.sh
+source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_greetings() {
   $DIALOG --title "Greetings" --msgbox "Welcome aboard" 10 40
@@ -9,12 +9,15 @@ dialog_greetings() {
   $DIALOG_OK)
     return $STATUS_TRUE
     ;;
+
   $DIALOG_CANCEL)
     return $STATUS_FALSE
     ;;
+
   $DIALOG_ESC)
     exit
     ;;
+
   esac
 }
 

@@ -1,28 +1,12 @@
 #!/bin/bash
 
-source $PROJ_ROOT_DIR/utility.sh
-
-choose_filepath() {
-  local filename=$($DIALOG --stdout --title "Choose file" --fselect $HOME/ 100 100)
-
-  case $? in
-  $DIALOG_OK)
-    retval=$filename
-    ;;
-  $DIALOG_CANCEL)
-    return $DIALOG_CANCEL
-    ;;
-  $DIALOG_ESC)
-    exit
-    ;;
-  esac
-}
+source $PROJ_ROOT_DIR/utility/utility.sh
 
 choose_encalg() {
   local tempfile=$(mktemp 2>/dev/null)
   trap "rm -f $tempfile" 0 1 2 5 15
 
-  $DIALOG --clear --title "" \
+  $DIALOG --clear --title "Choose the encryption algorithm" \
     --menu "" 20 50 4 \
     "$DMENU_OPTION_1" "Algorithm 1" \
     "$DMENU_OPTION_2" "Algorithm 2" \
@@ -64,7 +48,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
     local tempfile=$(mktemp 2>/dev/null)
     trap "rm -f $tempfile" 0 1 2 5 15
 
-    $DIALOG --clear --title "" \
+    $DIALOG --clear --title "Encryption" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Choose file..." \
       "$DMENU_OPTION_2" "Choose algorithm..." \
@@ -76,7 +60,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
       case $variant in
       $DMENU_OPTION_1)
-        choose_filepath
+        source $PROJ_ROOT_DIR/utility/common.sh dialog_choose_filepath
         filepath=$retval
         ;;
 
@@ -99,9 +83,11 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
       esac
       ;;
+
     $DIALOG_CANCEL)
       return $DIALOG_CANCEL
       ;;
+
     $DIALOG_ESC)
       exit
       ;;

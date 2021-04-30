@@ -3,7 +3,7 @@
 : ${PROJ_ROOT_DIR=$PWD}
 : ${APP_NAME="diploma"}
 
-source $PROJ_ROOT_DIR/utility.sh
+source $PROJ_ROOT_DIR/utility/utility.sh
 
 # if [ "$EUID" -ne 0 ]; then
 #   echo "Please run as root"
