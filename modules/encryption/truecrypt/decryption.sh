@@ -27,7 +27,7 @@ enter_password() {
     ;;
 
   $DIALOG_ESC)
-    exit
+    CLEAR_EXIT
     ;;
 
   esac
@@ -80,7 +80,7 @@ dialog_modules_encryption_truecrypt_decrypt() {
       return $DIALOG_CANCEL
       ;;
     $DIALOG_ESC)
-      exit
+      CLEAR_EXIT
       ;;
     esac
   done

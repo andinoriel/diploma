@@ -35,7 +35,7 @@ choose_encalg() {
     return $DIALOG_CANCEL
     ;;
   $DIALOG_ESC)
-    exit
+    CLEAR_EXIT
     ;;
   esac
 }
@@ -89,7 +89,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
       ;;
 
     $DIALOG_ESC)
-      exit
+      CLEAR_EXIT
       ;;
     esac
 

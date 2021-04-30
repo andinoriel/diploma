@@ -33,7 +33,7 @@ dialog_modules_encryption_truecrypt_main() {
       ;;
 
     $DIALOG_ESC)
-      exit
+      CLEAR_EXIT
       ;;
 
     esac

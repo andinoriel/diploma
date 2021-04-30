@@ -39,3 +39,8 @@ RESOLVE_FUNC_CALL() {
     exit $RC_ERROR
   fi
 }
+
+CLEAR_EXIT() {
+  clear
+  exit
+}

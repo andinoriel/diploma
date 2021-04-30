@@ -23,11 +23,12 @@ dialog_modules_main() {
       ;;
 
     $DIALOG_CANCEL)
+      clear
       return $DIALOG_CANCEL
       ;;
 
     $DIALOG_ESC)
-      exit
+      CLEAR_EXIT
       ;;
 
     esac

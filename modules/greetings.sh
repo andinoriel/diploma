@@ -15,7 +15,7 @@ dialog_greetings() {
     ;;
 
   $DIALOG_ESC)
-    exit
+    CLEAR_EXIT
     ;;
 
   esac

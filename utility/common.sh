@@ -15,7 +15,7 @@ dialog_choose_filepath() {
     ;;
 
   $DIALOG_ESC)
-    exit
+    CLEAR_EXIT
     ;;
 
   esac
