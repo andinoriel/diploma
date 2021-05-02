@@ -4,18 +4,13 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_encryption_truecrypt_main() {
   while true; do
-    local tempfile=$(mktemp 2>/dev/null)
-    trap "rm -f $tempfile" 0 1 2 5 15
-
-    $DIALOG --clear --title "Choose mode" \
+    option=$($DIALOG --clear --title "Choose mode" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Encrypt file" \
-      "$DMENU_OPTION_2" "Decrypt file" 2>$tempfile
+      "$DMENU_OPTION_2" "Decrypt file" 3>&1 1>&2 2>&3)
 
     case $? in
     $DIALOG_OK)
-      local option=$(cat $tempfile)
-
       case $option in
       $DMENU_OPTION_1) # show truecrypt encryption main menu
         source $PROJ_ROOT_DIR/modules/encryption/truecrypt/encryption.sh dialog_modules_encryption_truecrypt_encrypt
@@ -41,4 +36,4 @@ dialog_modules_encryption_truecrypt_main() {
   done
 }
 
-RESOLVE_FUNC_CALL $1
+RESOLVE_FUNC_CALL $@

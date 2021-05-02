@@ -5,11 +5,6 @@
 
 source $PROJ_ROOT_DIR/utility/utility.sh
 
-# if [ "$EUID" -ne 0 ]; then
-#   echo "Please run as root"
-#   exit $RC_ERROR
-# fi
-
 # say hello
 source $PROJ_ROOT_DIR/modules/greetings.sh dialog_greetings
 
