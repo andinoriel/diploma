@@ -23,6 +23,7 @@ dialog_modules_encryption_truecrypt_main() {
       esac
 
       ;;
+
     $DIALOG_CANCEL)
       return $DIALOG_CANCEL
       ;;

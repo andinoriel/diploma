@@ -119,53 +119,59 @@ dialog_modules_encryption_truecrypt_encrypt() {
           filesize=$(wc -c <$filepath)
           [ $filesize -lt 299008 ] && size=299008 || size=$filesize
 
-          filename=$(basename $filepath)
-
-          mkdir -p $PROJ_ROOT_DIR/out/mnt
+          filename=$(basename "$filepath")
 
           #region ROOT IS REQUIRED
-          if [ "$EUID" -ne 0 ]; then
-            sudo -k
-            faillock --reset
 
-            # ask for root
-            title="ROOT ACCESS IS REQUIRED"
-            text="\nEnter your ROOT password"
-            source $PROJ_ROOT_DIR/utility/common.sh dialog_enter_password "\${title}" "\${text}"
-            rpass=$retval
+          sudo -k
+          faillock --reset
 
-            export HISTIGNORE='*sudo -S*'
+          #region GET ROOT & VALIDATE
 
-            # validate root password(just random command)
-            prompt=$(
-              echo "$rpass" | sudo -S uname -a 2>&1
-              sudo -S -nv 2>&1
-            )
-            if [ $? -ne 0 ]; then
-              $DIALOG --title "Error" --msgbox "Wrong password" 10 40
-              continue
-            fi
+          title="ROOT ACCESS IS REQUIRED"
+          text="\nEnter your ROOT password"
+          source $PROJ_ROOT_DIR/utility/common.sh dialog_enter_password "\${title}" "\${text}"
+          rpass=$retval
 
-            # creating tc volume
-            # note: --hash=<RIPEMD-160|SHA-512|Whirlpool>
-            (truecrypt -t --size=$size --password="$password" -k "" \
-              --random-source=/dev/urandom --volume-type=normal \
-              --encryption=$encalg --hash=SHA-512 --filesystem=FAT \
-              -c "$PROJ_ROOT_DIR/out/$filename.tc" 2>&1) | dialog --programbox 20 70
+          export HISTIGNORE='*sudo -S*'
 
-            # mount created volume
-            echo "$rpass" | sudo -S -k truecrypt \
-              --password="$password" --mount "$PROJ_ROOT_DIR/out/$filename.tc" $PROJ_ROOT_DIR/out/mnt
-
-            # copy selected file to the volume
-            cp "$filepath" $PROJ_ROOT_DIR/out/mnt
-
-            # unmount created volume
-            echo "$rpass" | sudo -S -k truecrypt -d "$PROJ_ROOT_DIR/out/$filename.tc"
-
-            sudo -k
-            faillock --reset
+          # validate root password(just random command)
+          prompt=$(
+            echo "$rpass" | sudo -S uname -a 2>&1
+            sudo -S -nv 2>&1
+          )
+          if [ $? -ne 0 ]; then
+            $DIALOG --title "Error" --msgbox "Wrong password" 10 40
+            continue
           fi
+
+          #endregion
+
+          mntdir=$PROJ_ROOT_DIR/out/mnt$$
+          mkdir -p "$mntdir"
+
+          # creating tc volume
+          # note: --hash=<RIPEMD-160|SHA-512|Whirlpool>
+          (truecrypt -t --size=$size --password="$password" -k "" \
+            --random-source=/dev/urandom --volume-type=normal \
+            --encryption=$encalg --hash=SHA-512 --filesystem=FAT \
+            -c "$PROJ_ROOT_DIR/out/$filename.tc" 2>&1) | dialog --programbox 20 70
+
+          # mount created volume
+          echo "$rpass" | sudo -S -k truecrypt \
+            --password="$password" --mount "$PROJ_ROOT_DIR/out/$filename.tc" "$mntdir"
+
+          # copy selected file to the volume
+          cp "$filepath" "$mntdir"
+
+          # unmount created volume
+          echo "$rpass" | sudo -S -k truecrypt -d "$PROJ_ROOT_DIR/out/$filename.tc"
+
+          rmdir "$mntdir"
+
+          sudo -k
+          faillock --reset
+
           #endregion
 
         fi
