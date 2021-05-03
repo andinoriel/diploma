@@ -3,10 +3,7 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 choose_encalg() {
-  local tempfile=$(mktemp 2>/dev/null)
-  trap "rm -f $tempfile" 0 1 2 5 15
-
-  $DIALOG --clear --title "Choose the encryption algorithm" \
+  option=$($DIALOG --clear --title "Choose the encryption algorithm" \
     --menu "" 20 50 4 \
     "$DMENU_OPTION_1" "AES" \
     "$DMENU_OPTION_2" "Serpent" \
@@ -15,12 +12,10 @@ choose_encalg() {
     "$DMENU_OPTION_5" "AES-Twofish-Serpent" \
     "$DMENU_OPTION_6" "Serpent-AES" \
     "$DMENU_OPTION_7" "Serpent-Twofish-AES" \
-    "$DMENU_OPTION_8" "Twofish-Serpent" 2>$tempfile
+    "$DMENU_OPTION_8" "Twofish-Serpent" 3>&1 1>&2 2>&3)
 
   case $? in
   $DIALOG_OK)
-    local option=$(cat $tempfile)
-
     case $option in
     $DMENU_OPTION_1)
       retval="AES"
