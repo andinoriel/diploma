@@ -4,7 +4,7 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_encryption_veracrypt_main() {
   while true; do
-    option=$($DIALOG --clear --title "Choose mode" \
+    option=$($DIALOG --clear --title "VeraCrypt - Choose mode" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Encrypt file" \
       "$DMENU_OPTION_2" "Decrypt file" 3>&1 1>&2 2>&3)

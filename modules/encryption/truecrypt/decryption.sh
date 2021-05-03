@@ -7,7 +7,7 @@ dialog_modules_encryption_truecrypt_decrypt() {
   local password=""
 
   while true; do
-    option=$($DIALOG --clear --title "Decryption" \
+    option=$($DIALOG --clear --title "TrueCrypt - Decryption" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Choose TrueCrypt container..." \
       "$DMENU_OPTION_2" "Enter password..." \

@@ -71,7 +71,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
   local password=""
 
   while true; do
-    option=$($DIALOG --clear --title "Encryption" \
+    option=$($DIALOG --clear --title "TrueCrypt - Encryption" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Choose file..." \
       "$DMENU_OPTION_2" "Choose algorithm..." \
