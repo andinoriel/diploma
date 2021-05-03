@@ -1,6 +1,6 @@
 ## [0.3.0] - 2020-05-03
 
-## Added
+### Added
 * Network module: Nmap
 * NMap tcp scan
 * NMap tcp syn scan
@@ -12,25 +12,24 @@
 * NMap tcp window scan
 * NMap rpc scan
 
-## Changed
+### Changed
 * Utility components
 
-## Fixed
+### Fixed
 * Some utility bugs
 
 ## [0.2.0] - 2021-05-03
 
-## Added
+### Added
 * Encryption module: VeraCrypt
 * VeraCrypt:encryption
 * VeraCrypt:decryption
 
-## Changed
+### Changed
 * Utility components
 
-## Fixed
+### Fixed
 * Text strings in the interface
-
 
 ## [0.1.0] - 2021-05-02
 
