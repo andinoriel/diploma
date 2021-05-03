@@ -3,7 +3,7 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_choose_filepath() {
-  local filename=$($DIALOG --stdout --title "Choose file" --fselect $HOME/ 100 100 1>&1)
+  filename=$($DIALOG --title "Choose file" --fselect $HOME/ 100 100 3>&1 1>&2 2>&3)
 
   case $? in
   $DIALOG_OK)
@@ -25,7 +25,7 @@ dialog_enter_password() {
   eval title="$1"
   eval text="$2"
 
-  local pass=$($DIALOG --title "$title" --insecure --passwordbox "$text" 10 30 3>&1 1>&2 2>&3)
+  pass=$($DIALOG --title "$title" --insecure --passwordbox "$text" 10 30 3>&1 1>&2 2>&3)
 
   case $? in
   $DIALOG_OK)
