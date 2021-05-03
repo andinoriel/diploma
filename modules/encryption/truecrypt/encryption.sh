@@ -118,29 +118,12 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
           #region ROOT IS REQUIRED
 
-          sudo -k
-          faillock --reset
-
-          #region GET ROOT & VALIDATE
-
-          title="ROOT ACCESS IS REQUIRED"
-          text="\nEnter your ROOT password"
-          source $PROJ_ROOT_DIR/utility/common.sh dialog_enter_password "\${title}" "\${text}"
-          rpass=$retval
-
-          export HISTIGNORE='*sudo -S*'
-
-          # validate root password(just random command)
-          prompt=$(
-            echo "$rpass" | sudo -S uname -a 2>&1
-            sudo -S -nv 2>&1
-          )
-          if [ $? -ne 0 ]; then
-            $DIALOG --title "Error" --msgbox "Wrong password" 10 40
+          SUDO_CRED_LOCK_RESET
+          source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
+          if [[ $? -eq $RC_ERROR ]]; then
             continue
           fi
-
-          #endregion
+          rpass=$retval
 
           mntdir=$PROJ_ROOT_DIR/out/mnt$$
           mkdir -p "$mntdir"
@@ -164,8 +147,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
           rmdir "$mntdir"
 
-          sudo -k
-          faillock --reset
+          SUDO_CRED_LOCK_RESET
 
           #endregion
 

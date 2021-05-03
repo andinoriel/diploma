@@ -49,3 +49,8 @@ CLEAR_EXIT() {
   clear
   exit
 }
+
+SUDO_CRED_LOCK_RESET() {
+  sudo -k
+  faillock --reset
+}

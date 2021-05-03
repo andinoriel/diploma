@@ -43,4 +43,25 @@ dialog_enter_password() {
   esac
 }
 
+dialog_get_sup() {
+  title="ROOT ACCESS IS REQUIRED"
+  text="\nEnter your ROOT password"
+  source $PROJ_ROOT_DIR/utility/common.sh dialog_enter_password "\${title}" "\${text}"
+  rpass=$retval
+
+  export HISTIGNORE='*sudo -S*'
+
+  # validate root password(just random command)
+  prompt=$(
+    echo "$rpass" | sudo -S uname -a 2>&1
+    sudo -S -nv 2>&1
+  )
+  if [ $? -ne 0 ]; then
+    $DIALOG --title "Error" --msgbox "Wrong password" 10 40
+    return $RC_ERROR
+  fi
+
+  retval=$rpass
+}
+
 RESOLVE_FUNC_CALL $@
