@@ -3,22 +3,29 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_choose_path() {
-  filename=$($DIALOG --title "Choose file" --fselect $HOME/ 100 100 3>&1 1>&2 2>&3)
+  while true; do
+    path=$($DIALOG --title "Choose file" --fselect $HOME/ 100 100 3>&1 1>&2 2>&3)
 
-  case $? in
-  $DIALOG_OK)
-    retval=$filename
-    ;;
+    case $? in
+    $DIALOG_OK)
+      if !([ -f "$path" ] || [ -d "$path" ]); then
+        $DIALOG --title "Error" --msgbox "Wrong path!" 10 40
+        continue
+      fi
+      retval=$path
+      return
+      ;;
 
-  $DIALOG_CANCEL)
-    return $DIALOG_CANCEL
-    ;;
+    $DIALOG_CANCEL)
+      return $DIALOG_CANCEL
+      ;;
 
-  $DIALOG_ESC)
-    CLEAR_EXIT
-    ;;
+    $DIALOG_ESC)
+      CLEAR_EXIT
+      ;;
 
-  esac
+    esac
+  done
 }
 
 dialog_enter_password() {

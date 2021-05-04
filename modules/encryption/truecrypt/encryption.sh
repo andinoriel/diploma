@@ -111,8 +111,10 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
         if [ $correct -eq 1 ]; then
 
-          filesize=$(wc -c <$path)
-          [ $filesize -lt 299008 ] && size=299008 || size=$filesize
+          fdsize=$(du -sb $path | cut -f1)
+          # case 1: min FAT size - 299008
+          # case 2: $fdsize + extra space at 2 percent
+          [ $fdsize -lt 299008 ] && size=299008 || size=$(($fdsize + $fdsize / 100 * 2))
 
           fdname=$(basename "$path")
 
