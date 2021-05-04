@@ -2,7 +2,7 @@
 
 source $PROJ_ROOT_DIR/utility/utility.sh
 
-dialog_choose_filepath() {
+dialog_choose_path() {
   filename=$($DIALOG --title "Choose file" --fselect $HOME/ 100 100 3>&1 1>&2 2>&3)
 
   case $? in

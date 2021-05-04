@@ -3,13 +3,13 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_encryption_veracrypt_decrypt() {
-  local filepath=""
+  local path=""
   local password=""
 
   while true; do
     option=$($DIALOG --clear --title "VeraCrypt - Decryption" \
       --menu "" 20 70 4 \
-      "$DMENU_OPTION_1" "Choose TrueCrypt container... $([ -z $filepath ] && echo || echo [$(basename "$filepath")])" \
+      "$DMENU_OPTION_1" "Choose TrueCrypt container... $([ -z $path ] && echo || echo [$(basename "$path")])" \
       "$DMENU_OPTION_2" "Enter password... $([ -z $password ] && echo || echo [*])" \
       "$DMENU_OPTION_3" "Process" 3>&1 1>&2 2>&3)
 
@@ -17,8 +17,8 @@ dialog_modules_encryption_veracrypt_decrypt() {
     $DIALOG_OK)
       case $option in
       $DMENU_OPTION_1)
-        source $PROJ_ROOT_DIR/utility/common.sh dialog_choose_filepath
-        filepath=$retval
+        source $PROJ_ROOT_DIR/utility/common.sh dialog_choose_path
+        path=$retval
         ;;
 
       $DMENU_OPTION_2)
@@ -31,9 +31,9 @@ dialog_modules_encryption_veracrypt_decrypt() {
       $DMENU_OPTION_3)
         correct=1
 
-        if [ "$filepath" == "" ]; then
+        if [ "$path" == "" ]; then
           correct=0
-          $DIALOG --title "Error" --msgbox "Please choose file..." 10 40
+          $DIALOG --title "Error" --msgbox "Please choose VeraCrypt container..." 10 40
         fi
         if [ "$password" == "" ]; then
           correct=0
@@ -42,7 +42,7 @@ dialog_modules_encryption_veracrypt_decrypt() {
 
         if [ $correct -eq 1 ]; then
 
-          filename=$(basename "$filepath")
+          fdname=$(basename "$path")
 
           #region ROOT IS REQUIRED
 
@@ -55,21 +55,21 @@ dialog_modules_encryption_veracrypt_decrypt() {
 
           mntdir=$PROJ_ROOT_DIR/out/mnt$$
           mkdir -p $mntdir
-          mkdir -p $PROJ_ROOT_DIR/out/$filename.dir
+          mkdir -p $PROJ_ROOT_DIR/out/$fdname.dir
 
           # mount volume from a given path
           echo "$rpass" | sudo -S -k veracrypt \
-            --password="$password" --mount "$filepath" "$mntdir"
+            --password="$password" --mount "$path" "$mntdir"
 
           # move file(s) from the volume
           shopt -s dotglob nullglob
-          mv "$mntdir"/* $PROJ_ROOT_DIR/out/"$filename".dir
+          mv "$mntdir"/* $PROJ_ROOT_DIR/out/"$fdname".dir
 
           # unmount volume
-          echo "$rpass" | sudo -S -k veracrypt -d "$filepath"
+          echo "$rpass" | sudo -S -k veracrypt -d "$path"
 
           # delete volume
-          rm -f "$filepath"
+          rm -f "$path"
 
           rmdir "$mntdir"
 

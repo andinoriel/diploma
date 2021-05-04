@@ -61,14 +61,14 @@ choose_encalg() {
 }
 
 dialog_modules_encryption_truecrypt_encrypt() {
-  local filepath=""
+  local path=""
   local encalg=""
   local password=""
 
   while true; do
     option=$($DIALOG --clear --title "TrueCrypt - Encryption" \
       --menu "" 20 70 4 \
-      "$DMENU_OPTION_1" "Choose file... $([ -z $filepath ] && echo || echo [$(basename "$filepath")])" \
+      "$DMENU_OPTION_1" "Choose file or dir... $([ -z $path ] && echo || echo [$(basename "$path")])" \
       "$DMENU_OPTION_2" "Choose algorithm... $([ -z $encalg ] && echo || echo [$encalg])" \
       "$DMENU_OPTION_3" "Enter password... $([ -z $password ] && echo || echo [*])" \
       "$DMENU_OPTION_4" "Process" 3>&1 1>&2 2>&3)
@@ -77,8 +77,8 @@ dialog_modules_encryption_truecrypt_encrypt() {
     $DIALOG_OK)
       case $option in
       $DMENU_OPTION_1)
-        source $PROJ_ROOT_DIR/utility/common.sh dialog_choose_filepath
-        filepath=$retval
+        source $PROJ_ROOT_DIR/utility/common.sh dialog_choose_path
+        path=$retval
         ;;
 
       $DMENU_OPTION_2)
@@ -96,9 +96,9 @@ dialog_modules_encryption_truecrypt_encrypt() {
       $DMENU_OPTION_4)
         correct=1
 
-        if [ "$filepath" == "" ]; then
+        if [ "$path" == "" ]; then
           correct=0
-          $DIALOG --title "Error" --msgbox "Please choose file..." 10 40
+          $DIALOG --title "Error" --msgbox "Please choose file or dir.." 10 40
         fi
         if [ "$encalg" == "" ]; then
           correct=0
@@ -111,10 +111,10 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
         if [ $correct -eq 1 ]; then
 
-          filesize=$(wc -c <$filepath)
+          filesize=$(wc -c <$path)
           [ $filesize -lt 299008 ] && size=299008 || size=$filesize
 
-          filename=$(basename "$filepath")
+          fdname=$(basename "$path")
 
           #region ROOT IS REQUIRED
 
@@ -133,17 +133,17 @@ dialog_modules_encryption_truecrypt_encrypt() {
           (truecrypt -t --size=$size --password="$password" -k "" \
             --random-source=/dev/urandom --volume-type=normal \
             --encryption=$encalg --hash=SHA-512 --filesystem=FAT \
-            -c "$PROJ_ROOT_DIR/out/$filename.tc" 2>&1) | dialog --programbox 20 70
+            -c "$PROJ_ROOT_DIR/out/$fdname.tc" 2>&1) | dialog --programbox 20 70
 
           # mount created volume
           echo "$rpass" | sudo -S -k truecrypt \
-            --password="$password" --mount "$PROJ_ROOT_DIR/out/$filename.tc" "$mntdir"
+            --password="$password" --mount "$PROJ_ROOT_DIR/out/$fdname.tc" "$mntdir"
 
-          # copy selected file to the volume
-          cp "$filepath" "$mntdir"
+          # copy selected file or dir to the volume
+          cp -r "$path" "$mntdir"
 
           # unmount created volume
-          echo "$rpass" | sudo -S -k truecrypt -d "$PROJ_ROOT_DIR/out/$filename.tc"
+          echo "$rpass" | sudo -S -k truecrypt -d "$PROJ_ROOT_DIR/out/$fdname.tc"
 
           rmdir "$mntdir"
 
