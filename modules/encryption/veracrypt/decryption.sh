@@ -8,9 +8,9 @@ dialog_modules_encryption_veracrypt_decrypt() {
 
   while true; do
     option=$($DIALOG --clear --title "VeraCrypt - Decryption" \
-      --menu "" 20 50 4 \
-      "$DMENU_OPTION_1" "Choose VeraCrypt container..." \
-      "$DMENU_OPTION_2" "Enter password..." \
+      --menu "" 20 70 4 \
+      "$DMENU_OPTION_1" "Choose TrueCrypt container... $([ -z $filepath ] && echo || echo [$(basename "$filepath")])" \
+      "$DMENU_OPTION_2" "Enter password... $([ -z $password ] && echo || echo [*])" \
       "$DMENU_OPTION_3" "Process" 3>&1 1>&2 2>&3)
 
     case $? in
@@ -48,7 +48,7 @@ dialog_modules_encryption_veracrypt_decrypt() {
 
           SUDO_CRED_LOCK_RESET
           source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
-          if [[ $? -eq $RC_ERROR ]]; then
+          if [ $? -eq $RC_ERROR ]; then
             continue
           fi
           rpass=$retval
@@ -62,6 +62,7 @@ dialog_modules_encryption_veracrypt_decrypt() {
             --password="$password" --mount "$filepath" "$mntdir"
 
           # move file(s) from the volume
+          shopt -s dotglob nullglob
           mv "$mntdir"/* $PROJ_ROOT_DIR/out/"$filename".dir
 
           # unmount volume

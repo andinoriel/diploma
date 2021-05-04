@@ -16,7 +16,7 @@ is_ip_valid() {
   return 0
 }
 
-get_scan_target() {
+get_scan_ip() {
   while true; do
     ip=$($DIALOG --clear --title "Enter scan target ip" --inputbox "ip:" 10 30 3>&1 1>&2 2>&3)
 
@@ -51,7 +51,6 @@ nmap_scan() {
   if [ -z "$ip" ]; then
     dialog_show_ip_error
   else
-
     local type=$1
     eval local title="$3"
     nmap "$type" "$ip" | dialog --clear --title "$title" --programbox 20 100
@@ -65,8 +64,8 @@ nmap_su_scan() {
   else
     SUDO_CRED_LOCK_RESET
     source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
-    if [[ $? -eq $RC_ERROR ]]; then
-      continue
+    if [ $? -eq $RC_ERROR ]; then
+      return
     fi
     rpass=$retval
 
@@ -84,7 +83,7 @@ dialog_modules_network_nmap_main() {
   while true; do
     option=$($DIALOG --clear --title "NMap - Choose scan type" \
       --menu "" 20 50 4 \
-      "$DMENU_OPTION_1" "Specify IP" \
+      "$DMENU_OPTION_1" "Specify IP $([ -z $ip ] && echo || echo [$ip])" \
       "" "" \
       "$DMENU_OPTION_2" "tcp scan" \
       "$DMENU_OPTION_3" "tcp syn scan" \
@@ -100,7 +99,7 @@ dialog_modules_network_nmap_main() {
     $DIALOG_OK)
       case $option in
       $DMENU_OPTION_1)
-        get_scan_target
+        get_scan_ip
         ip=$retval
         ;;
 

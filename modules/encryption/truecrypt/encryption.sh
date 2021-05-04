@@ -67,10 +67,10 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
   while true; do
     option=$($DIALOG --clear --title "TrueCrypt - Encryption" \
-      --menu "" 20 50 4 \
-      "$DMENU_OPTION_1" "Choose file..." \
-      "$DMENU_OPTION_2" "Choose algorithm..." \
-      "$DMENU_OPTION_3" "Enter password..." \
+      --menu "" 20 70 4 \
+      "$DMENU_OPTION_1" "Choose file... $([ -z $filepath ] && echo || echo [$(basename "$filepath")])" \
+      "$DMENU_OPTION_2" "Choose algorithm... $([ -z $encalg ] && echo || echo [$encalg])" \
+      "$DMENU_OPTION_3" "Enter password... $([ -z $password ] && echo || echo [*])" \
       "$DMENU_OPTION_4" "Process" 3>&1 1>&2 2>&3)
 
     case $? in
@@ -120,7 +120,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
           SUDO_CRED_LOCK_RESET
           source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
-          if [[ $? -eq $RC_ERROR ]]; then
+          if [ $? -eq $RC_ERROR ]; then
             continue
           fi
           rpass=$retval

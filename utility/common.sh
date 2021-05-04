@@ -3,7 +3,7 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_choose_filepath() {
-  local filename=$($DIALOG --title "Choose file" --fselect $HOME/ 100 100 3>&1 1>&2 2>&3)
+  filename=$($DIALOG --title "Choose file" --fselect $HOME/ 100 100 3>&1 1>&2 2>&3)
 
   case $? in
   $DIALOG_OK)
@@ -25,7 +25,7 @@ dialog_enter_password() {
   eval local title="$1"
   eval local text="$2"
 
-  local pass=$($DIALOG --clear --title "$title" --insecure --passwordbox "$text" 10 30 3>&1 1>&2 2>&3)
+  pass=$($DIALOG --clear --title "$title" --insecure --passwordbox "$text" 10 30 3>&1 1>&2 2>&3)
 
   case $? in
   $DIALOG_OK)
@@ -47,12 +47,15 @@ dialog_get_sup() {
   local title="ROOT ACCESS IS REQUIRED"
   local text="\nEnter your ROOT password"
   source $PROJ_ROOT_DIR/utility/common.sh dialog_enter_password "\${title}" "\${text}"
+  if [ $? -eq $DIALOG_CANCEL ]; then
+    return $RC_ERROR
+  fi
   local rpass=$retval
 
   export HISTIGNORE='*sudo -S*'
 
   # validate root password(just random command)
-  local prompt=$(
+  prompt=$(
     echo "$rpass" | sudo -S uname -a 2>&1
     sudo -S -nv 2>&1
   )
