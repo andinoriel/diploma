@@ -74,4 +74,24 @@ dialog_get_sup() {
   retval=$rpass
 }
 
+dialog_get_all_partitions() {
+  #region ROOT IS REQUIRED
+
+  SUDO_CRED_LOCK_RESET
+
+  source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
+  if [ $? -eq $RC_ERROR ]; then
+    return $RC_ERROR
+  fi
+  local rpass=$retval
+
+  local partitions=$(echo "$rpass" | sudo -S -k fdisk -l /dev/sda | grep "^/dev" | cut -d" " -f1 | tr "\n" " ")
+
+  SUDO_CRED_LOCK_RESET
+
+  #endregion
+
+  retval=$partitions
+}
+
 RESOLVE_FUNC_CALL $@

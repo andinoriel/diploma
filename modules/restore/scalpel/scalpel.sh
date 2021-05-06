@@ -5,30 +5,22 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 dialog_modules_restore_scalpel_main() {
   #region ROOT IS REQUIRED
 
-  SUDO_CRED_LOCK_RESET
-
-  source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
+  source $PROJ_ROOT_DIR/utility/common.sh dialog_get_all_partitions
   if [ $? -eq $RC_ERROR ]; then
     return
   fi
-  local rpass=$retval
-
-  local type=$1
-  eval local title="$3"
-  partitions=$(echo "$rpass" | sudo -S -k fdisk -l /dev/sda | grep "^/dev" | cut -d" " -f1 | tr "\n" " ")
-
-  SUDO_CRED_LOCK_RESET
+  partitions=$retval
 
   #endregion
 
   IFS=', ' read -r -a partitions <<<"$partitions"
-  menulist=()
+  local menulist=()
   for i in $(seq 1 ${#partitions[@]}); do
     menulist+=("$DMENU_OPTION_$i" "${partitions[i - 1]}")
   done
 
   while true; do
-    option=$($DIALOG --clear --title "Scalpel - choose partition" \
+    option=$($DIALOG --clear --title "Scalpel - Choose partition" \
       --menu "" 20 50 4 \
       "${menulist[@]}" \
       3>&1 1>&2 2>&3)
@@ -45,8 +37,22 @@ dialog_modules_restore_scalpel_main() {
           let index=$(expr $index - 1)
 
           #region ROOT IS REQUIRED
+
+          SUDO_CRED_LOCK_RESET
+
+          source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
+          if [ $? -eq $RC_ERROR ]; then
+            continue
+          fi
+          rpass=$retval
+
+          local type=$1
+          eval local title="$3"
           echo "$rpass" | sudo -S -k scalpel -b -r "${menulist[$index]}" -o "$outdir" |
-            dialog --clear --title "test" --programbox 20 100
+            dialog --clear --title "Scalpel - Restoring" --programbox 30 100
+
+          SUDO_CRED_LOCK_RESET
+
           #endregion
         fi
       done
