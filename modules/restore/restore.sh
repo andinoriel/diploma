@@ -7,7 +7,7 @@ dialog_module_restore_main() {
     option=$($DIALOG --clear --title "Choose app" \
       --menu "Please select app:" 20 50 4 \
       "$DMENU_OPTION_1" "Scalpel" \
-      "$DMENU_OPTION_2" "Foremsot" 3>&1 1>&2 2>&3)
+      "$DMENU_OPTION_2" "Foremost" 3>&1 1>&2 2>&3)
 
     case $? in
     $DIALOG_OK)

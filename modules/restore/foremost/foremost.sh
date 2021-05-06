@@ -46,8 +46,6 @@ dialog_modules_restore_foremost_main() {
           fi
           rpass=$retval
 
-          local type=$1
-          eval local title="$3"
           echo "$rpass" | sudo -S -k foremost -t all -a -i "${menulist[$index]}" -o "$outdir" -v |
             dialog --clear --title "Foremost - Restoring" --programbox 30 100
 

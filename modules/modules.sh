@@ -17,11 +17,11 @@ dialog_modules_main() {
         source $PROJ_ROOT_DIR/modules/encryption/encryption.sh dialog_modules_encryption_main
         ;;
 
-      $DMENU_OPTION_2)
+      $DMENU_OPTION_2) # show network main menu
         source $PROJ_ROOT_DIR/modules/network/network.sh dialog_module_network_main
         ;;
 
-      $DMENU_OPTION_3)
+      $DMENU_OPTION_3) # show restore main menu
         source $PROJ_ROOT_DIR/modules/restore/restore.sh dialog_module_restore_main
         ;;
 

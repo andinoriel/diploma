@@ -46,8 +46,6 @@ dialog_modules_restore_scalpel_main() {
           fi
           rpass=$retval
 
-          local type=$1
-          eval local title="$3"
           echo "$rpass" | sudo -S -k scalpel -b -r "${menulist[$index]}" -o "$outdir" |
             dialog --clear --title "Scalpel - Restoring" --programbox 30 100
 
