@@ -7,7 +7,8 @@ dialog_modules_main() {
     option=$($DIALOG --clear --title "Choose module" \
       --menu "Please select app module:" 20 50 4 \
       "$DMENU_OPTION_1" "Data encryption" \
-      "$DMENU_OPTION_2" "Networking" 3>&1 1>&2 2>&3)
+      "$DMENU_OPTION_2" "Networking" \
+      "$DMENU_OPTION_3" "Restoring" 3>&1 1>&2 2>&3)
 
     case $? in
     $DIALOG_OK)
@@ -18,6 +19,10 @@ dialog_modules_main() {
 
       $DMENU_OPTION_2)
         source $PROJ_ROOT_DIR/modules/network/network.sh dialog_module_network_main
+        ;;
+
+      $DMENU_OPTION_3)
+        source $PROJ_ROOT_DIR/modules/restore/restore.sh dialog_module_restore_main
         ;;
 
       esac
