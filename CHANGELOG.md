@@ -1,3 +1,17 @@
+## [0.4.0] - 2020-05-06
+
+### Added
+* Restore module: Scalpel
+* Restore module: Foremost
+* Restore module: ext4magic
+
+### Changed
+* Utility components
+* Encryption modules: now works with both files and dirs
+
+### Fixed
+* Multiple bugs
+
 ## [0.3.0] - 2020-05-03
 
 ### Added
