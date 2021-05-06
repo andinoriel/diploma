@@ -62,6 +62,8 @@ nmap_su_scan() {
   if [ -z "$ip" ]; then
     dialog_show_ip_error
   else
+    #region ROOT IS REQUIRED
+
     SUDO_CRED_LOCK_RESET
     source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
     if [ $? -eq $RC_ERROR ]; then
@@ -74,6 +76,8 @@ nmap_su_scan() {
     echo "$rpass" | sudo -S -k nmap "$type" "$ip" | dialog --clear --title "$title" --programbox 20 100
 
     SUDO_CRED_LOCK_RESET
+
+    #endregion
   fi
 }
 

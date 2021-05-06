@@ -53,7 +53,7 @@ dialog_modules_encryption_veracrypt_decrypt() {
           fi
           rpass=$retval
 
-          mntdir=$PROJ_ROOT_DIR/out/mnt$$
+          mntdir=$PROJ_ROOT_DIR/out/mnt$(date +%F_%H-%M-%S)
           mkdir -p $mntdir
           mkdir -p $PROJ_ROOT_DIR/out/$fdname.dir
 

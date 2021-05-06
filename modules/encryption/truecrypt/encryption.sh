@@ -127,7 +127,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
           fi
           rpass=$retval
 
-          mntdir=$PROJ_ROOT_DIR/out/mnt$$
+          mntdir=$PROJ_ROOT_DIR/out/mnt$(date +%F_%H-%M-%S)
           mkdir -p "$mntdir"
 
           # creating tc volume
