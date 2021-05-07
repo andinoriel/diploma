@@ -1,4 +1,4 @@
-## [0.4.0] - 2020-05-06
+## [0.4.0] - 2021-05-06
 
 ### Added
 * Restore module: Scalpel
@@ -12,7 +12,7 @@
 ### Fixed
 * Multiple bugs
 
-## [0.3.0] - 2020-05-03
+## [0.3.0] - 2021-05-03
 
 ### Added
 * Network module: Nmap
