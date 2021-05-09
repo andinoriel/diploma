@@ -17,14 +17,14 @@ dialog_modules_encryption_veracrypt_decrypt() {
     $DIALOG_OK)
       case $option in
       $DMENU_OPTION_1)
-        source $PROJ_ROOT_DIR/utility/common.sh dialog_choose_path
+        source $PROJ_ROOT_DIR/utility/common.sh dialog_input_path
         path=$retval
         ;;
 
       $DMENU_OPTION_2)
         title=""
         text="Enter password"
-        source $PROJ_ROOT_DIR/utility/common.sh dialog_enter_password "\${title}" "\${text}"
+        source $PROJ_ROOT_DIR/utility/common.sh dialog_input_password "\${title}" "\${text}"
         password=$retval
         ;;
 

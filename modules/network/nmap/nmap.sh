@@ -2,54 +2,10 @@
 
 source $PROJ_ROOT_DIR/utility/utility.sh
 
-is_ip_valid() {
-  local ip=${1:-1.2.3.4}
-  local IFS=.
-  local -a a=($ip)
-
-  [[ $ip =~ ^[0-9]+(\.[0-9]+){3}$ ]] || return 1
-
-  local quad
-  for quad in {0..3}; do
-    [[ "${a[$quad]}" -gt 255 ]] && return 1
-  done
-  return 0
-}
-
-get_scan_ip() {
-  while true; do
-    ip=$($DIALOG --clear --title "Enter scan target ip" --inputbox "ip:" 10 30 3>&1 1>&2 2>&3)
-
-    case $? in
-    $DIALOG_OK)
-      if is_ip_valid "$ip"; then
-        retval=$ip
-        return
-      else
-        $DIALOG --title "Error" --msgbox "Wrong ip format" 10 40
-      fi
-
-      ;;
-    $DIALOG_CANCEL)
-      return $DIALOG_CANCEL
-      ;;
-
-    $DIALOG_ESC)
-      CLEAR_EXIT
-      ;;
-
-    esac
-  done
-}
-
-dialog_show_ip_error() {
-  $DIALOG --title "Error" --msgbox "Please specify the IP address" 10 40
-}
-
 nmap_scan() {
   local ip=$2
   if [ -z "$ip" ]; then
-    dialog_show_ip_error
+    $DIALOG --title "Error" --msgbox "Please specify the IP address" 10 40
   else
     local type=$1
     eval local title="$3"
@@ -60,7 +16,7 @@ nmap_scan() {
 nmap_su_scan() {
   local ip=$2
   if [ -z "$ip" ]; then
-    dialog_show_ip_error
+    $DIALOG --title "Error" --msgbox "Please specify the IP address" 10 40
   else
     #region ROOT IS REQUIRED
 
@@ -103,7 +59,9 @@ dialog_modules_network_nmap_main() {
     $DIALOG_OK)
       case $option in
       $DMENU_OPTION_1)
-        get_scan_ip
+        title="Enter scan target ip"
+        text=""
+        source $PROJ_ROOT_DIR/utility/common.sh dialog_input_ip ip_only "\${title}" "\${text}"
         ip=$retval
         ;;
 

@@ -7,11 +7,12 @@ dialog_greetings() {
 
   case $? in
   $DIALOG_OK)
-    return $STATUS_TRUE
+    return $DIALOG_OK
     ;;
 
   $DIALOG_CANCEL)
-    return $STATUS_FALSE
+    clear
+    return $DIALOG_CANCEL
     ;;
 
   $DIALOG_ESC)
