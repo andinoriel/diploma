@@ -1,3 +1,12 @@
+## [0.5.0] - 2021-05-09
+
+### Added
+* Network module: Siege(alpha)
+
+### Changed
+* Utility component
+* Regular code refactor
+
 ## [0.4.0] - 2021-05-06
 
 ### Added
