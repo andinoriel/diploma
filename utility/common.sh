@@ -80,6 +80,10 @@ dialog_input_num() {
 }
 
 dialog_get_sup() {
+  #region ROOT IS REQUIRED
+
+  SUDO_CRED_LOCK_RESET
+
   local title="ROOT ACCESS IS REQUIRED"
   local text="\nEnter your ROOT password"
   source $PROJ_ROOT_DIR/utility/common.sh dialog_input_password "\${title}" "\${text}"
@@ -101,6 +105,10 @@ dialog_get_sup() {
   fi
 
   retval=$rpass
+
+  SUDO_CRED_LOCK_RESET
+
+  #endregion
 }
 
 dialog_get_all_partitions() {
@@ -145,7 +153,7 @@ dialog_input_ip() {
         retval=$ip
         return
       else
-        $DIALOG --title "Error" --msgbox "Wrong ip format" 10 40
+        $DIALOG --title "Error" --msgbox "Wrong format" 10 40
       fi
 
       ;;

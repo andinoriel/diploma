@@ -47,7 +47,7 @@ dialog_modules_restore_ext4magic_main() {
           rpass=$retval
 
           echo "$rpass" | sudo -S -k ext4magic -d "$outdir" -M "${menulist[$index]}" |
-            dialog --clear --title "ext4magic - Restoring" --programbox 30 100
+            $DIALOG --clear --title "ext4magic - Restoring" --programbox 30 100
 
           SUDO_CRED_LOCK_RESET
 

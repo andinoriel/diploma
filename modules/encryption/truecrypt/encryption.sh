@@ -98,7 +98,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
 
         if [ "$path" == "" ]; then
           correct=0
-          $DIALOG --title "Error" --msgbox "Please choose file or dir.." 10 40
+          $DIALOG --title "Error" --msgbox "Please choose file or dir..." 10 40
         fi
         if [ "$encalg" == "" ]; then
           correct=0

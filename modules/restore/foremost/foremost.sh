@@ -47,7 +47,7 @@ dialog_modules_restore_foremost_main() {
           rpass=$retval
 
           echo "$rpass" | sudo -S -k foremost -t all -a -i "${menulist[$index]}" -o "$outdir" -v |
-            dialog --clear --title "Foremost - Restoring" --programbox 30 100
+            $DIALOG --clear --title "Foremost - Restoring" --programbox 30 100
 
           SUDO_CRED_LOCK_RESET
 

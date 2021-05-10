@@ -5,18 +5,18 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 nmap_scan() {
   local ip=$2
   if [ -z "$ip" ]; then
-    $DIALOG --title "Error" --msgbox "Please specify the IP address" 10 40
+    $DIALOG --title "Error" --msgbox "Please specify the IP address..." 10 40
   else
     local type=$1
     eval local title="$3"
-    nmap "$type" "$ip" | dialog --clear --title "$title" --programbox 20 100
+    nmap "$type" "$ip" | $DIALOG --clear --title "$title" --programbox 20 100
   fi
 }
 
 nmap_su_scan() {
   local ip=$2
   if [ -z "$ip" ]; then
-    $DIALOG --title "Error" --msgbox "Please specify the IP address" 10 40
+    $DIALOG --title "Error" --msgbox "Please specify the IP address..." 10 40
   else
     #region ROOT IS REQUIRED
 
@@ -29,7 +29,7 @@ nmap_su_scan() {
 
     local type=$1
     eval local title="$3"
-    echo "$rpass" | sudo -S -k nmap "$type" "$ip" | dialog --clear --title "$title" --programbox 20 100
+    echo "$rpass" | sudo -S -k nmap "$type" "$ip" | $DIALOG --clear --title "$title" --programbox 20 100
 
     SUDO_CRED_LOCK_RESET
 

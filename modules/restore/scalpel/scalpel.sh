@@ -47,7 +47,7 @@ dialog_modules_restore_scalpel_main() {
           rpass=$retval
 
           echo "$rpass" | sudo -S -k scalpel -b -r "${menulist[$index]}" -o "$outdir" |
-            dialog --clear --title "Scalpel - Restoring" --programbox 30 100
+            $DIALOG --clear --title "Scalpel - Restoring" --programbox 30 100
 
           SUDO_CRED_LOCK_RESET
 
