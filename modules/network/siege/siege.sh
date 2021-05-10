@@ -2,6 +2,25 @@
 
 source $PROJ_ROOT_DIR/utility/utility.sh
 
+check_input() {
+  local correct=1
+
+  if [ "$ipp" == "" ]; then
+    correct=0
+    $DIALOG --title "Error" --msgbox "Please specify ip and port..." 10 40
+  fi
+  if [ $concurrent -eq 0 ]; then
+    correct=0
+    $DIALOG --title "Error" --msgbox "Please specify concurrent users count..." 10 40
+  fi
+  if [ $repeat -eq 0 ]; then
+    correct=0
+    $DIALOG --title "Error" --msgbox "Please specify repeat times count..." 10 40
+  fi
+
+  retval=$correct
+}
+
 dialog_modules_network_siege_main() {
   local ipp=""
   local concurrent=0
@@ -15,6 +34,7 @@ dialog_modules_network_siege_main() {
       "$DMENU_OPTION_3" "Specify repeat times count $([ $repeat -eq 0 ] && echo || echo [$repeat])" \
       "" "" \
       "$DMENU_OPTION_4" "Run benchmark stress-test" \
+      "$DMENU_OPTION_5" "Pull down HTTP headers" \
       3>&1 1>&2 2>&3)
 
     case $? in
@@ -42,23 +62,46 @@ dialog_modules_network_siege_main() {
         ;;
 
       $DMENU_OPTION_4)
-        correct=1
-
-        if [ "$ipp" == "" ]; then
-          correct=0
-          $DIALOG --title "Error" --msgbox "Please specify ip and port.." 10 40
-        fi
-        if [ $concurrent -eq 0 ]; then
-          correct=0
-          $DIALOG --title "Error" --msgbox "Please specify concurrent users count.." 10 40
-        fi
-        if [ $repeat -eq 0 ]; then
-          correct=0
-          $DIALOG --title "Error" --msgbox "Please specify repeat times count.." 10 40
-        fi
+        check_input
+        correct=$retval
 
         if [ $correct -eq 1 ]; then
-          siege -c $concurrent -r $repeat -b -j "$ipp" | dialog --clear --title "$title" --programbox 20 100
+          if dialog --clear --stdout --title "Note" \
+            --yesno "Please note that the operation may take a long time" 20 40; then
+            echo "" | $DIALOG --clear --progressbox 20 70
+
+            outd=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
+            mkdir -p "$outd"
+            tmp=$outd/log.json
+            touch $tmp
+
+            siege -c $concurrent -r $repeat -b -j "$ipp" >$tmp 2>/dev/null
+            $PROJ_ROOT_DIR/modules/network/siege/jparse.py $tmp |
+              $DIALOG --clear --title "=== SUMMARY ===" --programbox 20 70
+
+            rm -rf $outd
+
+          else
+            continue
+          fi
+
+        fi
+
+        ;;
+
+      $DMENU_OPTION_5)
+        check_input
+        correct=$retval
+
+        if [ $correct -eq 1 ]; then
+          outd=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
+          mkdir -p "$outd"
+          tmp=$outd/log
+          touch $tmp
+
+          siege -g "$ipp" >$tmp 2>/dev/null
+          cat $tmp | $DIALOG --clear --programbox 40 100
+          rm -rf $outd
         fi
         ;;
 
