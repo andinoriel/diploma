@@ -1,3 +1,14 @@
+## [0.5.1] - 2021-05-10
+
+### Added
+* Server submodule for network:siege
+
+### Changed
+* Network module: Siege
+
+### Fixed
+* Multiple bugs
+
 ## [0.5.0] - 2021-05-09
 
 ### Added
