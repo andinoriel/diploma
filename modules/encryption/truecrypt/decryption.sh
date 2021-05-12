@@ -47,6 +47,7 @@ dialog_modules_encryption_truecrypt_decrypt() {
           #region ROOT IS REQUIRED
 
           SUDO_CRED_LOCK_RESET
+
           source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
           if [ $? -eq $RC_ERROR ]; then
             continue
