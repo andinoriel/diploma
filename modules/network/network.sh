@@ -7,7 +7,8 @@ dialog_module_network_main() {
     option=$($DIALOG --clear --title "Choose app" \
       --menu "Please select app:" 20 50 4 \
       "$DMENU_OPTION_1" "Nmap" \
-      "$DMENU_OPTION_2" "Siege" 3>&1 1>&2 2>&3)
+      "$DMENU_OPTION_2" "Siege" \
+      "$DMENU_OPTION_3" "httperf" 3>&1 1>&2 2>&3)
 
     case $? in
     $DIALOG_OK)
@@ -18,6 +19,10 @@ dialog_module_network_main() {
 
       $DMENU_OPTION_2) # show siege main menu
         source $PROJ_ROOT_DIR/modules/network/siege/siege.sh dialog_modules_network_siege_main
+        ;;
+
+      $DMENU_OPTION_3) # show httperf main menu
+        source $PROJ_ROOT_DIR/modules/network/httperf/httperf.sh dialog_modules_network_httperf_main
         ;;
 
       esac
