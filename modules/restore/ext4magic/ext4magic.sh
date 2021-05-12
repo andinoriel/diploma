@@ -47,7 +47,7 @@ dialog_modules_restore_ext4magic_main() {
           rpass=$retval
 
           local log=$PROJ_ROOT_DIR/out/ext4magic$(date +%F_%H-%M-%S)
-          echo "$rpass" | sudo -S -k ext4magic -d "$outdir" -M "${menulist[$index]}" |
+          echo "$rpass" | sudo -S -k -b ext4magic -d "$outdir" -M "${menulist[$index]}" |
             tee "$log" | $DIALOG --clear --title "ext4magic - Restoring" --progressbox 30 100
           $DIALOG --clear --textbox "$log" 30 100
           rm -f $log

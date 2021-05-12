@@ -141,14 +141,14 @@ dialog_modules_encryption_truecrypt_encrypt() {
           rm -f $log
 
           # mount created volume
-          echo "$rpass" | sudo -S -k truecrypt \
+          echo "$rpass" | sudo -S -k -b truecrypt \
             --password="$password" --mount "$PROJ_ROOT_DIR/out/$fdname.tc" "$mntdir"
 
           # copy selected file or dir to the volume
           cp -r "$path" "$mntdir"
 
           # unmount created volume
-          echo "$rpass" | sudo -S -k truecrypt -d "$PROJ_ROOT_DIR/out/$fdname.tc"
+          echo "$rpass" | sudo -S -k -b truecrypt -d "$PROJ_ROOT_DIR/out/$fdname.tc"
 
           rmdir "$mntdir"
 

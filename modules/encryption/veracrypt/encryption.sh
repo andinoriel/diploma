@@ -177,14 +177,14 @@ dialog_modules_encryption_veracrypt_encrypt() {
           rm -f $log
 
           # mount created volume
-          echo "$rpass" | sudo -S -k veracrypt \
+          echo "$rpass" | sudo -S -k -b veracrypt \
             --password="$password" --mount "$PROJ_ROOT_DIR/out/$fdname.vc" "$mntdir"
 
           # copy selected file or dir to the volume
           cp -r "$path" "$mntdir"
 
           # unmount created volume
-          echo "$rpass" | sudo -S -k veracrypt -d "$PROJ_ROOT_DIR/out/$fdname.vc"
+          echo "$rpass" | sudo -S -k -b veracrypt -d "$PROJ_ROOT_DIR/out/$fdname.vc"
 
           rmdir "$mntdir"
 
