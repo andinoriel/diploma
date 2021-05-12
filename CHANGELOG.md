@@ -1,3 +1,12 @@
+## [0.7.0] - 2021-05-12
+
+### Added
+* Benchmark for encryption:truecrypt
+* Benchmark for encryption:veracrypt
+
+### Fixed
+* Some bugs
+
 ## [0.6.0] - 2021-05-12
 
 ### Added
