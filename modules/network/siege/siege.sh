@@ -67,19 +67,13 @@ dialog_modules_network_siege_main() {
 
         if [ $correct -eq 1 ]; then
           if dialog --clear --stdout --title "Note" \
-            --yesno "Please note that the operation may take a long time" 20 40; then
-            echo "" | $DIALOG --clear --progressbox 20 70
+            --yesno "Please note that the operation may take a long time" 10 40; then
 
-            outd=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
-            mkdir -p "$outd"
-            tmp=$outd/log.json
-            touch $tmp
-
-            siege -c $concurrent -r $repeat -b -j "$ipp" >$tmp 2>/dev/null
-            $PROJ_ROOT_DIR/modules/network/siege/jparse.py $tmp |
-              $DIALOG --clear --title "=== SUMMARY ===" --programbox 20 70
-
-            rm -rf $outd
+            local log=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
+            siege -c $concurrent -r $repeat -b "$ipp" 2>&1 1>/dev/null | tee "$log" |
+              $DIALOG --clear --progressbox 40 100
+            $DIALOG --clear --textbox "$log" 40 100
+            rm -rf $log
 
           else
             continue
@@ -94,14 +88,10 @@ dialog_modules_network_siege_main() {
         correct=$retval
 
         if [ $correct -eq 1 ]; then
-          outd=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
-          mkdir -p "$outd"
-          tmp=$outd/log
-          touch $tmp
-
-          siege -g "$ipp" >$tmp 2>/dev/null
-          cat $tmp | $DIALOG --clear --programbox 40 100
-          rm -rf $outd
+          local log=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
+          siege -g "$ipp" 2>/dev/null | tee "$log" | $DIALOG --clear --progressbox 40 100
+          $DIALOG --clear --textbox "$log" 40 100 # TODO: fix empty output
+          # rm -rf $log
         fi
         ;;
 

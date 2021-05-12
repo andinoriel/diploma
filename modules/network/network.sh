@@ -6,11 +6,13 @@ stop_test_server() {
   if [ $server_online -eq 1 ]; then
     curl -X GET localhost:4723/stop
     server_online=0
+    rm -f $log
   fi
 }
 
 dialog_module_network_main() {
   local server_online=0
+  local log=""
 
   while true; do
     option=$($DIALOG --clear --title "Choose app" \
@@ -39,7 +41,8 @@ dialog_module_network_main() {
         ;;
 
       $DMENU_OPTION_4) # run test server
-        nohup bash $PROJ_ROOT_DIR/run-ts.sh &>$PROJ_ROOT_DIR/out/nohup_ts$(date +%F_%H-%M-%S) &
+        log=$PROJ_ROOT_DIR/out/nohup_ts$(date +%F_%H-%M-%S)
+        nohup bash $PROJ_ROOT_DIR/run-ts.sh &>$log &
         server_online=1
         ;;
 

@@ -66,13 +66,16 @@ dialog_modules_network_httperf_main() {
 
         if [ $correct -eq 1 ]; then
           if dialog --clear --stdout --title "Note" \
-            --yesno "Please note that the operation may take a long time" 20 40; then
+            --yesno "Please note that the operation may take a long time" 10 40; then
 
             local ip=$(echo "$ipp" | grep -Po "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])")
             local port=$(echo "$ipp" | grep -Po "((?:))(?:[0-9]+)$")
 
+            local log=$PROJ_ROOT_DIR/out/httperf$(date +%F_%H-%M-%S)
             httperf --server "$ip" --port "$port" --num-conns "$req_total" --rate "$req_ps" |
-              $DIALOG --clear --programbox 40 100
+              tee "$log" | $DIALOG --clear --progressbox 40 100
+            $DIALOG --clear --textbox "$log" 40 100
+            rm -f $log
 
           else
             continue

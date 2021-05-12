@@ -147,12 +147,12 @@ dialog_modules_encryption_veracrypt_encrypt() {
 
         if [ $correct -eq 1 ]; then
 
-          fdsize=$(du -sb $path | cut -f1)
+          local fdsize=$(du -sb $path | cut -f1)
           # case 1: min FAT size - 299008
           # case 2: $fdsize + extra space at 2 percent
           [ $fdsize -lt 299008 ] && size=299008 || size=$(($fdsize + $fdsize / 100 * 2))
 
-          fdname=$(basename "$path")
+          local fdname=$(basename "$path")
 
           #region ROOT IS REQUIRED
 
@@ -163,15 +163,18 @@ dialog_modules_encryption_veracrypt_encrypt() {
           fi
           rpass=$retval
 
-          mntdir=$PROJ_ROOT_DIR/out/mnt$(date +%F_%H-%M-%S)
+          local mntdir=$PROJ_ROOT_DIR/out/mnt$(date +%F_%H-%M-%S)
           mkdir -p "$mntdir"
 
+          local log=$PROJ_ROOT_DIR/out/veracrypt$(date +%F_%H-%M-%S)
           # creating vc volume
           # note: --hash=<RIPEMD-160|SHA-256|SHA-512|Whirlpool|Streebog>
           (veracrypt -t --size=$size --password="$password" -k "" \
             --random-source=/dev/urandom --volume-type=normal \
             --encryption=$encalg --hash=SHA-512 --filesystem=FAT \
-            --pim=0 -c "$PROJ_ROOT_DIR/out/$fdname.vc" 2>&1) | dialog --programbox 20 70
+            --pim=0 -c "$PROJ_ROOT_DIR/out/$fdname.vc" 2>&1) | tee "$log" | $DIALOG --progressbox 20 70
+          $DIALOG --clear --textbox "$log" 20 70
+          rm -f $log
 
           # mount created volume
           echo "$rpass" | sudo -S -k veracrypt \

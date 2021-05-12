@@ -46,8 +46,11 @@ dialog_modules_restore_scalpel_main() {
           fi
           rpass=$retval
 
+          local log=$PROJ_ROOT_DIR/out/foremost$(date +%F_%H-%M-%S)
           echo "$rpass" | sudo -S -k scalpel -b -r "${menulist[$index]}" -o "$outdir" |
-            $DIALOG --clear --title "Scalpel - Restoring" --programbox 30 100
+            tee "$log" | $DIALOG --clear --title "Scalpel - Restoring" --progressbox 30 100
+          $DIALOG --clear --textbox "$log" 30 100
+          rm -f $log
 
           SUDO_CRED_LOCK_RESET
 

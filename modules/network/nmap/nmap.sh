@@ -9,7 +9,11 @@ nmap_scan() {
   else
     local type=$1
     eval local title="$3"
-    nmap "$type" "$ip" | $DIALOG --clear --title "$title" --programbox 20 100
+
+    local log=$PROJ_ROOT_DIR/out/nmap$(date +%F_%H-%M-%S)
+    nmap "$type" "$ip" | tee "$log" | $DIALOG --clear --title "$title" --progressbox 40 120
+    $DIALOG --clear --textbox "$log" 40 120
+    rm -f $log
   fi
 }
 
@@ -21,6 +25,7 @@ nmap_su_scan() {
     #region ROOT IS REQUIRED
 
     SUDO_CRED_LOCK_RESET
+
     source $PROJ_ROOT_DIR/utility/common.sh dialog_get_sup
     if [ $? -eq $RC_ERROR ]; then
       return
@@ -29,7 +34,12 @@ nmap_su_scan() {
 
     local type=$1
     eval local title="$3"
-    echo "$rpass" | sudo -S -k nmap "$type" "$ip" | $DIALOG --clear --title "$title" --programbox 20 100
+
+    local log=$PROJ_ROOT_DIR/out/nmap$(date +%F_%H-%M-%S)
+    echo "$rpass" | sudo -S -k nmap "$type" "$ip" | tee "$log" |
+      $DIALOG --clear --title "$title" --progressbox 40 120
+    $DIALOG --clear --textbox "$log" 40 120
+    rm -f $log
 
     SUDO_CRED_LOCK_RESET
 

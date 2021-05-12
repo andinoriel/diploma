@@ -8,6 +8,8 @@ fi
 : ${PROJ_ROOT_DIR=$PWD}
 : ${APP_NAME="diploma"}
 
+mkdir -p $PROJ_ROOT_DIR/out/
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 # say hello
