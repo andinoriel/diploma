@@ -1,3 +1,8 @@
+## [0.6.0] - 2021-05-12
+
+### Added
+* Network module: httperf
+
 ## [0.5.1] - 2021-05-10
 
 ### Added
