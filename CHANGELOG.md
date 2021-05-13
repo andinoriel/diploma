@@ -1,3 +1,10 @@
+## [0.7.1] - 2021-05-13
+
+### Fixed
+* Getting all partitions
+* Root prompting
+* Minor improvements
+
 ## [0.7.0] - 2021-05-12
 
 ### Added
