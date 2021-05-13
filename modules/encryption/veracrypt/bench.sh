@@ -50,7 +50,7 @@ modules_encryption_veracrypt_bench_inner() {
           grep -i "real" | sed "s/real//" | sed "s/ //g" | tr "\t" " ")
 
         # mount created volume
-        veracrypt \
+        veracrypt -t --pim=0 --keyfiles="" --protect-hidden=no \
           --password="$password" --mount "$container_name" "$mntdir"
 
         local fill_time_start=$(date +%s)
@@ -79,7 +79,7 @@ modules_encryption_veracrypt_bench_inner() {
           "$volume_create_time" "$volume_fill_time" "$elapsed_fill_speed"
 
         # unmount created volume
-        veracrypt -d "$container_name"
+        veracrypt -t -d "$container_name"
 
         rm -f "$container_name"
 
