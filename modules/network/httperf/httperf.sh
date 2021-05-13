@@ -65,7 +65,7 @@ dialog_modules_network_httperf_main() {
         correct=$retval
 
         if [ $correct -eq 1 ]; then
-          if dialog --clear --stdout --title "Note" \
+          if $DIALOG --clear --stdout --title "Note" \
             --yesno "Please note that the operation may take a long time" 10 40; then
 
             local ip=$(echo "$ipp" | grep -Po "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])")

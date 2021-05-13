@@ -41,9 +41,11 @@ dialog_module_network_main() {
         ;;
 
       $DMENU_OPTION_4) # run test server
-        log=$PROJ_ROOT_DIR/out/nohup_ts$(date +%F_%H-%M-%S)
-        nohup bash $PROJ_ROOT_DIR/run-ts.sh &>$log &
-        server_online=1
+        if [ $server_online -eq 0 ]; then
+          log=$PROJ_ROOT_DIR/out/nohup_ts$(date +%F_%H-%M-%S)
+          nohup bash $PROJ_ROOT_DIR/run-ts.sh &>$log &
+          server_online=1
+        fi
         ;;
 
       $DMENU_OPTION_5) # stop test server

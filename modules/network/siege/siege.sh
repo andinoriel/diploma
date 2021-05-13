@@ -66,7 +66,7 @@ dialog_modules_network_siege_main() {
         correct=$retval
 
         if [ $correct -eq 1 ]; then
-          if dialog --clear --stdout --title "Note" \
+          if $DIALOG --clear --stdout --title "Note" \
             --yesno "Please note that the operation may take a long time" 10 40; then
 
             local log=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
@@ -91,7 +91,7 @@ dialog_modules_network_siege_main() {
           local log=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S)
           siege -g "$ipp" 2>/dev/null | tee "$log" | $DIALOG --clear --progressbox 40 100
           $DIALOG --clear --textbox "$log" 40 100 # TODO: fix empty output
-          # rm -rf $log
+          rm -rf $log
         fi
         ;;
 
