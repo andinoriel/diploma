@@ -59,15 +59,14 @@ dialog_modules_encryption_truecrypt_decrypt() {
           mkdir -p $PROJ_ROOT_DIR/out/$fdname.dir
 
           # mount volume from a given path
-          echo "$rpass" | sudo -S -k -b truecrypt \
-            --password="$password" --mount "$path" "$mntdir"
+          sudo -S -k truecrypt --password="$password" --mount "$path" "$mntdir" <<<"$rpass"
 
           # move file(s) from the volume
           shopt -s dotglob nullglob
           mv "$mntdir"/* $PROJ_ROOT_DIR/out/"$fdname".dir
 
           # unmount volume
-          echo "$rpass" | sudo -S -k -b truecrypt -d "$path"
+          sudo -S -k truecrypt -d "$path" <<<"$rpass"
 
           # delete volume
           rm -f "$path"

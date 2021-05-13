@@ -22,7 +22,7 @@ modules_encryption_veracrypt_bench_inner() {
   echo "- CPU: $cpu_info"
   echo "$separator"
   printf "%-10s | %-10s | %-30s | %-20s | %-20s | %-10s\n" \
-    "SIZE" "HASH" "ENCRYPTION" \
+    "SIZE" "HASH" "ENCRYPTION ALGORITHM" \
     "VOL CREATE TIME" "VOL FILL TIME" "SPEED (MB/sec)"
 
   echo "$separator"
@@ -115,9 +115,9 @@ modules_encryption_veracrypt_bench() {
   rpass=$retval
 
   local log=$PROJ_ROOT_DIR/out/vcbench$(date +%F_%H-%M-%S).log
-  echo "$rpass" | sudo -S -k -b bash -c \
-    "$(declare -f modules_encryption_veracrypt_bench_inner); modules_encryption_veracrypt_bench_inner" |
-    tee "$log" | $DIALOG --progressbox 80 125
+  sudo -S -k bash -c \
+    "$(declare -f modules_encryption_veracrypt_bench_inner); modules_encryption_veracrypt_bench_inner" \
+    <<<"$rpass" | tee "$log" | $DIALOG --progressbox 80 125
   $DIALOG --textbox "$log" 80 125
   rm -f $log
 

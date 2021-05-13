@@ -96,7 +96,7 @@ dialog_get_sup() {
 
   # validate root password(just random command)
   prompt=$(
-    echo "$rpass" | sudo -S uname -a 2>&1
+    sudo -S uname -a 2>&1 <<<"$rpass"
     sudo -S -nv 2>&1
   )
   if [ $? -ne 0 ]; then
@@ -122,7 +122,7 @@ dialog_get_all_partitions() {
   fi
   local rpass=$retval
 
-  local partitions=$(echo "$rpass" | sudo -S -k -b fdisk -l /dev/sda | grep "^/dev" | cut -d" " -f1 | tr "\n" " ")
+  local partitions=$(sudo -S -k fdisk -l <<<"$rpass" | grep "^/dev" | cut -d" " -f1 | tr "\n" " ")
 
   SUDO_CRED_LOCK_RESET
 
