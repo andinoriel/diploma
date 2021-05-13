@@ -115,7 +115,7 @@ modules_encryption_truecrypt_bench() {
   rpass=$retval
 
   local log=$PROJ_ROOT_DIR/out/tcbench$(date +%F_%H-%M-%S).log
-  sudo -S -k bash -c \
+  sudo -S -k -p "" bash -c \
     "$(declare -f modules_encryption_truecrypt_bench_inner); modules_encryption_truecrypt_bench_inner" \
     <<<"$rpass" | tee "$log" | $DIALOG --progressbox 80 125
   $DIALOG --textbox "$log" 80 125

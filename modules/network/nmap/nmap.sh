@@ -36,7 +36,7 @@ nmap_su_scan() {
     eval local title="$3"
 
     local log=$PROJ_ROOT_DIR/out/nmap$(date +%F_%H-%M-%S)
-    sudo -S -k nmap "$type" "$ip" <<<"$rpass" | tee "$log" |
+    sudo -S -k -p "" nmap "$type" "$ip" <<<"$rpass" | tee "$log" |
       $DIALOG --clear --title "$title" --progressbox 40 120
     $DIALOG --clear --textbox "$log" 40 120
     rm -f $log

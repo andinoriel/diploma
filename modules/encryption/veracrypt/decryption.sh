@@ -59,14 +59,14 @@ dialog_modules_encryption_veracrypt_decrypt() {
           mkdir -p $PROJ_ROOT_DIR/out/$fdname.dir
 
           # mount volume from a given path
-          sudo -S -k veracrypt --password="$password" --mount "$path" "$mntdir" <<<"$rpass"
+          sudo -S -k -p "" veracrypt --password="$password" --mount "$path" "$mntdir" <<<"$rpass"
 
           # move file(s) from the volume
           shopt -s dotglob nullglob
           mv "$mntdir"/* $PROJ_ROOT_DIR/out/"$fdname".dir
 
           # unmount volume
-          sudo -S -k veracrypt -d "$path" <<<"$rpass"
+          sudo -S -k -p "" veracrypt -d "$path" <<<"$rpass"
 
           # delete volume
           rm -f "$path"

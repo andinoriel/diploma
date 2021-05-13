@@ -122,7 +122,7 @@ dialog_get_all_partitions() {
   fi
   local rpass=$retval
 
-  local partitions=$(sudo -S -k fdisk -l <<<"$rpass" | grep "^/dev" | cut -d" " -f1 | tr "\n" " ")
+  local partitions=$(sudo -S -k -p "" fdisk -l <<<"$rpass" | grep "^/dev" | cut -d" " -f1 | tr "\n" " ")
 
   SUDO_CRED_LOCK_RESET
 
