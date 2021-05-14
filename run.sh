@@ -8,9 +8,13 @@ fi
 : ${PROJ_ROOT_DIR=$PWD}
 : ${APP_NAME="diploma"}
 
+export DIALOGRC=$PROJ_ROOT_DIR/utility/.default.dialogrc
+
 app_cleanup() {
   rm -rf $PROJ_ROOT_DIR/out/*.log
   source $PROJ_ROOT_DIR/utility/common.sh network_stop_test_server
+
+  unset DIALOGRC
 }
 
 trap ctrl_c INT

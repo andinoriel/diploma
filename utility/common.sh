@@ -82,12 +82,15 @@ dialog_input_num() {
 dialog_get_sup() {
   #region ROOT IS REQUIRED
 
+  export DIALOGRC=$PROJ_ROOT_DIR/utility/.warn.dialogrc
+
   SUDO_CRED_LOCK_RESET
 
   local title="ROOT ACCESS IS REQUIRED"
   local text="\nEnter your ROOT password"
   source $PROJ_ROOT_DIR/utility/common.sh dialog_input_password "\${title}" "\${text}"
   if [ $? -eq $DIALOG_CANCEL ]; then
+    export DIALOGRC=$PROJ_ROOT_DIR/utility/.default.dialogrc
     return $RC_ERROR
   fi
   local rpass=$retval
@@ -101,12 +104,15 @@ dialog_get_sup() {
   )
   if [ $? -ne 0 ]; then
     $DIALOG --clear --title "Error" --msgbox "Wrong password" 10 40
+    export DIALOGRC=$PROJ_ROOT_DIR/utility/.default.dialogrc
     return $RC_ERROR
   fi
 
   retval=$rpass
 
   SUDO_CRED_LOCK_RESET
+
+  export DIALOGRC=$PROJ_ROOT_DIR/utility/.default.dialogrc
 
   #endregion
 }
