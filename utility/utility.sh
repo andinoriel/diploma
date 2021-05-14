@@ -52,5 +52,5 @@ CLEAR_EXIT() {
 
 SUDO_CRED_LOCK_RESET() {
   sudo -k
-  faillock --reset
+  faillock --user $USER --reset
 }

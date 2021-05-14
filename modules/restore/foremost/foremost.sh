@@ -47,9 +47,9 @@ dialog_modules_restore_foremost_main() {
           rpass=$retval
 
           local log=$PROJ_ROOT_DIR/out/foremost$(date +%F_%H-%M-%S).log
-          sudo -S -k -p "" foremost -t all -a -i "${menulist[$index]}" -o "$outdir" -v <<<"$rpass" |
-            tee "$log" | $DIALOG --clear --title "Foremost - Restoring" --progressbox 30 100
-          $DIALOG --clear --textbox "$log" 30 100
+          sudo -S -k -p "" foremost -t all -a -i "${menulist[$index]}" -o "$outdir" -v 2>/dev/null <<<"$rpass" |
+            tee "$log" | $DIALOG --clear --title "Foremost - Restoring" --progressbox 40 110
+          $DIALOG --clear --textbox "$log" 40 110
           rm -f $log
 
           SUDO_CRED_LOCK_RESET

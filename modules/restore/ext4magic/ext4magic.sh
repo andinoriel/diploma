@@ -48,8 +48,8 @@ dialog_modules_restore_ext4magic_main() {
 
           local log=$PROJ_ROOT_DIR/out/ext4magic$(date +%F_%H-%M-%S).log
           sudo -S -k -p "" ext4magic -d "$outdir" -M "${menulist[$index]}" <<<"$rpass" |
-            tee "$log" | $DIALOG --clear --title "ext4magic - Restoring" --progressbox 30 100
-          $DIALOG --clear --textbox "$log" 30 100
+            tee "$log" | $DIALOG --clear --title "ext4magic - Restoring" --progressbox 40 110
+          $DIALOG --clear --textbox "$log" 40 110
           rm -f $log
 
           SUDO_CRED_LOCK_RESET
