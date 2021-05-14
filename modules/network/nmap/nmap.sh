@@ -10,7 +10,7 @@ nmap_scan() {
     local type=$1
     eval local title="$3"
 
-    local log=$PROJ_ROOT_DIR/out/nmap$(date +%F_%H-%M-%S)
+    local log=$PROJ_ROOT_DIR/out/nmap$(date +%F_%H-%M-%S).log
     nmap "$type" "$ip" $([ $force -eq 0 ] && echo "" || echo -Pn) 2>/dev/null |
       tee "$log" | $DIALOG --clear --title "$title" --progressbox 40 120
     $DIALOG --clear --title "$title" --textbox "$log" 40 120
@@ -139,7 +139,8 @@ dialog_modules_network_nmap_main() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac

@@ -46,7 +46,7 @@ dialog_modules_restore_scalpel_main() {
           fi
           rpass=$retval
 
-          local log=$PROJ_ROOT_DIR/out/foremost$(date +%F_%H-%M-%S)
+          local log=$PROJ_ROOT_DIR/out/foremost$(date +%F_%H-%M-%S).log
           sudo -S -k -p "" scalpel -b -r "${menulist[$index]}" -o "$outdir" <<<"$rpass" |
             tee "$log" | $DIALOG --clear --title "Scalpel - Restoring" --progressbox 30 100
           $DIALOG --clear --textbox "$log" 30 100
@@ -65,7 +65,8 @@ dialog_modules_restore_scalpel_main() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac

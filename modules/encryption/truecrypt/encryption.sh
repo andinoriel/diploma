@@ -131,7 +131,7 @@ dialog_modules_encryption_truecrypt_encrypt() {
           local mntdir=$PROJ_ROOT_DIR/out/mnt$(date +%F_%H-%M-%S)
           mkdir -p "$mntdir"
 
-          local log=$PROJ_ROOT_DIR/out/truecrypt$(date +%F_%H-%M-%S)
+          local log=$PROJ_ROOT_DIR/out/truecrypt$(date +%F_%H-%M-%S).log
           # creating tc volume
           # note: --hash=<RIPEMD-160|SHA-512|Whirlpool>
           (truecrypt -t --size=$size --password="$password" -k "" \
@@ -169,7 +169,8 @@ dialog_modules_encryption_truecrypt_encrypt() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
     esac
 

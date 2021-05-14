@@ -169,4 +169,13 @@ dialog_input_ip() {
   done
 }
 
+network_run_test_server() {
+  source $PROJ_ROOT_DIR/extern/server.sh init
+  source $PROJ_ROOT_DIR/extern/server.sh run
+}
+
+network_stop_test_server() {
+  curl -X GET localhost:4723/stop
+}
+
 RESOLVE_FUNC_CALL $@

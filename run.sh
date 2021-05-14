@@ -8,6 +8,17 @@ fi
 : ${PROJ_ROOT_DIR=$PWD}
 : ${APP_NAME="diploma"}
 
+app_cleanup() {
+  rm -rf $PROJ_ROOT_DIR/out/*.log
+  source $PROJ_ROOT_DIR/utility/common.sh network_stop_test_server
+}
+
+trap ctrl_c INT
+ctrl_c() {
+  app_cleanup
+  CLEAR_EXIT
+}
+
 mkdir -p $PROJ_ROOT_DIR/out/
 
 source $PROJ_ROOT_DIR/utility/utility.sh
@@ -17,3 +28,5 @@ source $PROJ_ROOT_DIR/modules/greetings.sh dialog_greetings
 
 # show main menu
 source $PROJ_ROOT_DIR/modules/modules.sh dialog_modules_main
+
+ctrl_c

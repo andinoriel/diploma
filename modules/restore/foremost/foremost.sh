@@ -46,7 +46,7 @@ dialog_modules_restore_foremost_main() {
           fi
           rpass=$retval
 
-          local log=$PROJ_ROOT_DIR/out/foremost$(date +%F_%H-%M-%S)
+          local log=$PROJ_ROOT_DIR/out/foremost$(date +%F_%H-%M-%S).log
           sudo -S -k -p "" foremost -t all -a -i "${menulist[$index]}" -o "$outdir" -v <<<"$rpass" |
             tee "$log" | $DIALOG --clear --title "Foremost - Restoring" --progressbox 30 100
           $DIALOG --clear --textbox "$log" 30 100
@@ -65,7 +65,8 @@ dialog_modules_restore_foremost_main() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac

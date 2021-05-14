@@ -34,7 +34,8 @@ dialog_modules_main() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac

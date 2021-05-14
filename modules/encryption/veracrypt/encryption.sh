@@ -167,7 +167,7 @@ dialog_modules_encryption_veracrypt_encrypt() {
           local mntdir=$PROJ_ROOT_DIR/out/mnt$(date +%F_%H-%M-%S)
           mkdir -p "$mntdir"
 
-          local log=$PROJ_ROOT_DIR/out/veracrypt$(date +%F_%H-%M-%S)
+          local log=$PROJ_ROOT_DIR/out/veracrypt$(date +%F_%H-%M-%S).log
           # creating vc volume
           # note: --hash=<RIPEMD-160|SHA-256|SHA-512|Whirlpool|Streebog>
           (veracrypt -t --size=$size --password="$password" -k "" \
@@ -205,7 +205,8 @@ dialog_modules_encryption_veracrypt_encrypt() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac

@@ -35,7 +35,8 @@ dialog_modules_encryption_veracrypt_main() {
       ;;
 
     $DIALOG_ESC)
-      CLEAR_EXIT
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac

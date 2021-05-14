@@ -2,14 +2,6 @@
 
 source $PROJ_ROOT_DIR/utility/utility.sh
 
-stop_test_server() {
-  if [ $server_online -eq 1 ]; then
-    curl -X GET localhost:4723/stop
-    server_online=0
-    rm -f $log
-  fi
-}
-
 dialog_module_network_main() {
   local server_online=0
   local log=""
@@ -42,14 +34,18 @@ dialog_module_network_main() {
 
       $DMENU_OPTION_4) # run test server
         if [ $server_online -eq 0 ]; then
-          log=$PROJ_ROOT_DIR/out/nohup_ts$(date +%F_%H-%M-%S)
-          nohup bash $PROJ_ROOT_DIR/run-ts.sh &>$log &
+          log=$PROJ_ROOT_DIR/out/test_server$(date +%F_%H-%M-%S).log
+          nohup bash -c \
+            "PROJ_ROOT_DIR=$PROJ_ROOT_DIR; source $PROJ_ROOT_DIR/utility/common.sh network_run_test_server" &>$log &
           server_online=1
         fi
         ;;
 
       $DMENU_OPTION_5) # stop test server
-        stop_test_server
+        if [ $server_online -eq 1 ]; then
+          source $PROJ_ROOT_DIR/utility/common.sh network_stop_test_server
+          server_online=0
+        fi
         ;;
 
       esac
@@ -57,13 +53,14 @@ dialog_module_network_main() {
       ;;
 
     $DIALOG_CANCEL)
-      stop_test_server
+      source $PROJ_ROOT_DIR/utility/common.sh network_stop_test_server
       return $DIALOG_CANCEL
       ;;
 
     $DIALOG_ESC)
-      stop_test_server
-      CLEAR_EXIT
+      source $PROJ_ROOT_DIR/utility/common.sh network_stop_test_server
+      clear
+      return $DIALOG_ESC
       ;;
 
     esac
