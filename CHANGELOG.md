@@ -1,3 +1,17 @@
+## [0.7.2] - 2021-05-15
+
+### Added
+* CtrlC interruption handling
+* Force mode for network:nmap
+* App colorize
+
+### Changed
+* App hello message
+
+### Fixed
+* Encryption:veracrypt verbose
+* Module:restore output
+
 ## [0.7.1] - 2021-05-13
 
 ### Fixed
