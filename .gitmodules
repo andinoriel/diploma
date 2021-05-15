@@ -1,0 +1,3 @@
+[submodule "extern/server"]
+	path = extern/server
+	url = https://github.com/Andinoriel/diploma-nms.git
