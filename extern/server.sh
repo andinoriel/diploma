@@ -3,14 +3,14 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 init() {
-  python -m venv $PROJ_ROOT_DIR/extern/server/env
+  python3 -m venv $PROJ_ROOT_DIR/extern/server/env
   source $PROJ_ROOT_DIR/extern/server/env/bin/activate
-  pip install -r $PROJ_ROOT_DIR/extern/server/requirements.txt
+  pip3 install -r $PROJ_ROOT_DIR/extern/server/requirements.txt
 }
 
 run() {
   cd $PROJ_ROOT_DIR/extern/server/
-  python -m diploma-nms
+  python3 -m diploma-nms
 }
 
 RESOLVE_FUNC_CALL $@

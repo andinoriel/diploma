@@ -27,7 +27,7 @@ dialog_modules_network_httperf_main() {
   local req_ps=0
 
   while true; do
-    option=$($DIALOG --clear --title "Siege - Set up stress-test" \
+    option=$($DIALOG --clear --title "httperf - Set up stress-test" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Specify IP:port $([ -z $ipp ] && echo || echo [$ipp])" \
       "$DMENU_OPTION_2" "Specify total HTTP requests count $([ $req_total -eq 0 ] && echo || echo [$req_total])" \
