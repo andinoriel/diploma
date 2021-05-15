@@ -1,3 +1,8 @@
+## [1.0.0] - 2021-05-15
+
+### Changed
+* First release - bump to v1.0.0
+
 ## [0.7.2] - 2021-05-15
 
 ### Added
