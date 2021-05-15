@@ -64,7 +64,7 @@ Make sure you have installed these apps successfully before use this project:
    <img src="screenshots/2.1.1.1 - Algorithm dialog.png" width="1280"/>
    <img src="screenshots/2.1.1.1 - Password dialog.png" width="1280"/>
    <img src="screenshots/2.1.1.1 - Encryption.png" width="1280"/>
-   <img src="screenshots/2.1.2 - benchmark.png" width="1280"/>
+   <img src="screenshots/2.1.2 - Benchmark.png" width="1280"/>
    <img src="screenshots/2.2 - Menu.png" width="1280"/>
    <img src="screenshots/2.2.1 - Menu.png" width="1280"/>
    <img src="screenshots/2.2.1 - Scan.png" width="1280"/>
