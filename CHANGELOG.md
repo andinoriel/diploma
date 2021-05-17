@@ -1,3 +1,11 @@
+## [1.1.0] - 2021-05-17
+
+### Added
+* Saving log mechanism using sqlite
+
+### Fixed
+* Some bugs
+
 ## [1.0.0] - 2021-05-15
 
 ### Changed
