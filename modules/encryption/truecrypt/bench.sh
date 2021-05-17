@@ -5,9 +5,9 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 modules_encryption_truecrypt_bench_inner() {
   #region ROOT IS REQUIRED
 
-  local size=(104857600) # 100MD 200MB 500MB 1GB
+  local size=(104857600 209715200 524288000 1073741824) # 100MD 200MB 500MB 1GB
   local hash=(RIPEMD-160 SHA-512 Whirlpool)
-  local encalg=(AES)
+  local encalg=(AES Serpent Twofish AES-Twofish AES-Twofish-Serpent Serpent-AES Serpent-Twofish-AES Twofish-Serpent)
 
   local cpu_info=$(cat /proc/cpuinfo | grep -oP "model name.*?:(.*)" | uniq | sed "s/model name.*: //")
 
