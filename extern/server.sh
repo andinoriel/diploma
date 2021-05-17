@@ -3,14 +3,11 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 init() {
-  python3 -m venv $PROJ_ROOT_DIR/extern/server/env
-  source $PROJ_ROOT_DIR/extern/server/env/bin/activate
-  pip3 install -r $PROJ_ROOT_DIR/extern/server/requirements.txt
+  /usr/bin/pip3 install falcon==3.0.0
 }
 
 run() {
-  cd $PROJ_ROOT_DIR/extern/server/
-  python3 -m diploma-nms
+  /usr/bin/env python3 $PROJ_ROOT_DIR/extern/server.py
 }
 
 RESOLVE_FUNC_CALL $@
