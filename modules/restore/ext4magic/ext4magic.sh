@@ -20,7 +20,7 @@ dialog_modules_restore_ext4magic_main() {
   done
 
   while true; do
-    option=$($DIALOG --clear --title "ext4magic - Choose partition" \
+    option=$($DIALOG --clear --title "ext4magic - Choose a partition" \
       --menu "" 20 50 4 \
       "${menulist[@]}" \
       3>&1 1>&2 2>&3)

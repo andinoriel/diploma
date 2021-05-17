@@ -65,7 +65,7 @@ dialog_modules_network_nmap_main() {
   local force=0
 
   while true; do
-    option=$($DIALOG --clear --title "NMap - Choose scan type" \
+    option=$($DIALOG --clear --title "NMap - Choose a scan type" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Specify IP $([ -z $ip ] && echo || echo [$ip])" \
       "$DMENU_OPTION_2" "Force mode $([ $force -eq 0 ] && echo [off] || echo [on])" \

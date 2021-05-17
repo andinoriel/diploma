@@ -20,7 +20,7 @@ dialog_modules_restore_foremost_main() {
   done
 
   while true; do
-    option=$($DIALOG --clear --title "Foremost - Choose partition" \
+    option=$($DIALOG --clear --title "Foremost - Choose a partition" \
       --menu "" 20 50 4 \
       "${menulist[@]}" \
       3>&1 1>&2 2>&3)

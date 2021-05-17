@@ -4,8 +4,8 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_main() {
   while true; do
-    option=$($DIALOG --clear --title "Choose module" \
-      --menu "Please select app module:" 20 50 4 \
+    option=$($DIALOG --clear --title "Choose an module" \
+      --menu "Please select an app module:" 20 50 4 \
       "$DMENU_OPTION_1" "Data encryption" \
       "$DMENU_OPTION_2" "Networking" \
       "$DMENU_OPTION_3" "Restoring" 3>&1 1>&2 2>&3)

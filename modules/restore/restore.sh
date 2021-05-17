@@ -4,8 +4,8 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_module_restore_main() {
   while true; do
-    option=$($DIALOG --clear --title "Choose app" \
-      --menu "Please select app:" 20 50 4 \
+    option=$($DIALOG --clear --title "Choose an app" \
+      --menu "Please select an app:" 20 50 4 \
       "$DMENU_OPTION_1" "Scalpel" \
       "$DMENU_OPTION_2" "Foremost" \
       "$DMENU_OPTION_3" "ext4magic" 3>&1 1>&2 2>&3)

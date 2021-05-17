@@ -7,8 +7,8 @@ dialog_module_network_main() {
   local log=""
 
   while true; do
-    option=$($DIALOG --clear --title "Choose app" \
-      --menu "Please select app:" 20 50 4 \
+    option=$($DIALOG --clear --title "Choose an app" \
+      --menu "Please select an app:" 20 50 4 \
       "$DMENU_OPTION_1" "Nmap" \
       "$DMENU_OPTION_2" "Siege" \
       "$DMENU_OPTION_3" "httperf" \

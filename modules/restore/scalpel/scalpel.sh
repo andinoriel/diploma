@@ -20,7 +20,7 @@ dialog_modules_restore_scalpel_main() {
   done
 
   while true; do
-    option=$($DIALOG --clear --title "Scalpel - Choose partition" \
+    option=$($DIALOG --clear --title "Scalpel - Choose a partition" \
       --menu "" 20 50 4 \
       "${menulist[@]}" \
       3>&1 1>&2 2>&3)

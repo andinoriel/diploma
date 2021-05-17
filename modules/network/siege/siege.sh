@@ -27,7 +27,7 @@ dialog_modules_network_siege_main() {
   local repeat=0
 
   while true; do
-    option=$($DIALOG --clear --title "Siege - Set up stress-test" \
+    option=$($DIALOG --clear --title "Siege - Stress-test set up " \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Specify IP:port $([ -z $ipp ] && echo || echo [$ipp])" \
       "$DMENU_OPTION_2" "Specify concurrent users count $([ $concurrent -eq 0 ] && echo || echo [$concurrent])" \
@@ -67,7 +67,7 @@ dialog_modules_network_siege_main() {
 
         if [ $correct -eq 1 ]; then
           if $DIALOG --clear --stdout --title "Note" \
-            --yesno "Please note that the operation may take a long time" 10 40; then
+            --yesno "Please note that the operation may take a long time. Proceed anyway?" 10 40; then
 
             local log=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S).log
             siege -c $concurrent -r $repeat -b "$ipp" 2>&1 1>/dev/null | tee "$log" |

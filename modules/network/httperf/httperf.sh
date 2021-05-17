@@ -27,7 +27,7 @@ dialog_modules_network_httperf_main() {
   local req_ps=0
 
   while true; do
-    option=$($DIALOG --clear --title "httperf - Set up stress-test" \
+    option=$($DIALOG --clear --title "httperf - Stress-test set up" \
       --menu "" 20 50 4 \
       "$DMENU_OPTION_1" "Specify IP:port $([ -z $ipp ] && echo || echo [$ipp])" \
       "$DMENU_OPTION_2" "Specify total HTTP requests count $([ $req_total -eq 0 ] && echo || echo [$req_total])" \
@@ -66,7 +66,7 @@ dialog_modules_network_httperf_main() {
 
         if [ $correct -eq 1 ]; then
           if $DIALOG --clear --stdout --title "Note" \
-            --yesno "Please note that the operation may take a long time" 10 40; then
+            --yesno "Please note that the operation may take a long time. Proceed anyway?" 10 40; then
 
             local ip=$(echo "$ipp" | grep -Po "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])")
             local port=$(echo "$ipp" | grep -Po "((?:))(?:[0-9]+)$")
