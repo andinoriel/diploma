@@ -75,6 +75,12 @@ dialog_modules_network_httperf_main() {
             httperf --server "$ip" --port "$port" --num-conns "$req_total" --rate "$req_ps" |
               tee "$log" | $DIALOG --clear --progressbox 40 100
             $DIALOG --clear --textbox "$log" 40 100
+
+            /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+              'network:httperf:test' \
+              "$(cat $log)" \
+              'ok'
+
             rm -f $log
 
           else

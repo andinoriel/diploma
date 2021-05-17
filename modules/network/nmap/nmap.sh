@@ -14,6 +14,12 @@ nmap_scan() {
     nmap "$type" "$ip" $([ $force -eq 0 ] && echo "" || echo -Pn) 2>/dev/null |
       tee "$log" | $DIALOG --clear --title "$title" --progressbox 40 120
     $DIALOG --clear --title "$title" --textbox "$log" 40 120
+
+    /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+      'network:nmap:scan' \
+      "$(cat $log)" \
+      'ok'
+
     rm -f $log
   fi
 }
@@ -40,6 +46,12 @@ nmap_su_scan() {
     sudo -S -k -p "" nmap "$type" "$ip" <<<"$rpass" | tee "$log" |
       $DIALOG --clear --title "$title" --progressbox 40 120
     $DIALOG --clear --title "$title" --textbox "$log" 40 120
+
+    /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+      'network:nmap:scan' \
+      "$(cat $log)" \
+      'ok'
+
     rm -f $log
 
     SUDO_CRED_LOCK_RESET

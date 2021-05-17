@@ -35,6 +35,8 @@
 : ${RC_OK=0}
 : ${RC_ERROR=1}
 
+: ${PROJ_DB_PATH=$PROJ_ROOT_DIR/out/diploma.sqlite}
+
 # RESOLVE_FUNC_CALL $@
 RESOLVE_FUNC_CALL() {
   if declare -f "$1" >/dev/null; then

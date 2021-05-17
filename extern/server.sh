@@ -3,7 +3,7 @@
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 init() {
-  /usr/bin/pip3 install falcon==3.0.0
+  /usr/bin/env pip3 install falcon==3.0.0
 }
 
 run() {

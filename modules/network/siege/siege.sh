@@ -73,6 +73,12 @@ dialog_modules_network_siege_main() {
             siege -c $concurrent -r $repeat -b "$ipp" 2>&1 1>/dev/null | tee "$log" |
               $DIALOG --clear --progressbox 40 100
             $DIALOG --clear --textbox "$log" 40 100
+
+            /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+              'network:siege:test' \
+              "$(cat $log)" \
+              'ok'
+
             rm -rf $log
 
           else
@@ -92,6 +98,12 @@ dialog_modules_network_siege_main() {
           local log=$PROJ_ROOT_DIR/out/siege$(date +%F_%H-%M-%S).log
           siege -g "$ipp" 2>/dev/null | tee "$log" | $DIALOG --clear --progressbox 40 100
           $DIALOG --clear --textbox "$log" 40 100 # TODO: fix empty output
+
+          /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+            'network:siege:info' \
+            "$(cat $log)" \
+            'ok'
+
           rm -rf $log
         fi
         ;;

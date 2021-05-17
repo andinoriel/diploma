@@ -50,6 +50,12 @@ dialog_modules_restore_foremost_main() {
           sudo -S -k -p "" foremost -t all -a -i "${menulist[$index]}" -o "$outdir" -v 2>/dev/null <<<"$rpass" |
             tee "$log" | $DIALOG --clear --title "Foremost - Restoring" --progressbox 40 110
           $DIALOG --clear --textbox "$log" 40 110
+
+          /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+            'restore:foremost:restore' \
+            "$(cat $log)" \
+            'ok'
+
           rm -f $log
 
           SUDO_CRED_LOCK_RESET

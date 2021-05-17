@@ -50,6 +50,12 @@ dialog_modules_restore_ext4magic_main() {
           sudo -S -k -p "" ext4magic -d "$outdir" -M "${menulist[$index]}" <<<"$rpass" |
             tee "$log" | $DIALOG --clear --title "ext4magic - Restoring" --progressbox 40 110
           $DIALOG --clear --textbox "$log" 40 110
+
+          /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+            'restore:ext4magic:restore' \
+            "$(cat $log)" \
+            'ok'
+
           rm -f $log
 
           SUDO_CRED_LOCK_RESET

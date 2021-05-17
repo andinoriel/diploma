@@ -139,6 +139,12 @@ dialog_modules_encryption_truecrypt_encrypt() {
             --encryption=$encalg --hash=SHA-512 --filesystem=FAT \
             -c "$PROJ_ROOT_DIR/out/$fdname.tc" 2>&1) | tee "$log" | $DIALOG --progressbox 20 70
           $DIALOG --clear --textbox "$log" 20 70
+
+          /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+            'encryption:truecrypt:encrypt' \
+            "$(cat $log)" \
+            'ok'
+
           rm -f $log
 
           # mount created volume

@@ -5,9 +5,9 @@ source $PROJ_ROOT_DIR/utility/utility.sh
 modules_encryption_truecrypt_bench_inner() {
   #region ROOT IS REQUIRED
 
-  local size=(104857600 209715200 524288000 1073741824) # 100MD 200MB 500MB 1GB
+  local size=(104857600) # 100MD 200MB 500MB 1GB
   local hash=(RIPEMD-160 SHA-512 Whirlpool)
-  local encalg=(AES Serpent Twofish AES-Twofish AES-Twofish-Serpent Serpent-AES Serpent-Twofish-AES Twofish-Serpent)
+  local encalg=(AES)
 
   local cpu_info=$(cat /proc/cpuinfo | grep -oP "model name.*?:(.*)" | uniq | sed "s/model name.*: //")
 
@@ -119,6 +119,12 @@ modules_encryption_truecrypt_bench() {
     "$(declare -f modules_encryption_truecrypt_bench_inner); modules_encryption_truecrypt_bench_inner" \
     <<<"$rpass" | tee "$log" | $DIALOG --progressbox 80 125
   $DIALOG --textbox "$log" 80 125
+
+  /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+    'encryption:truecrypt:bench' \
+    "$(cat $log)" \
+    'ok'
+
   rm -f $log
 
   SUDO_CRED_LOCK_RESET

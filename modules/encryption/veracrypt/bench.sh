@@ -119,6 +119,12 @@ modules_encryption_veracrypt_bench() {
     "$(declare -f modules_encryption_veracrypt_bench_inner); modules_encryption_veracrypt_bench_inner" \
     <<<"$rpass" | tee "$log" | $DIALOG --progressbox 80 125
   $DIALOG --textbox "$log" 80 125
+
+  /usr/bin/env python3 $PROJ_ROOT_DIR/utility/db.py -f $PROJ_DB_PATH -l \
+    'encryption:veracrypt:bench' \
+    "$(cat $log)" \
+    'ok'
+
   rm -f $log
 
   SUDO_CRED_LOCK_RESET
