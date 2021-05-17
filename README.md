@@ -7,14 +7,8 @@ This diploma project is designed to interactively demonstrate the main aspects o
 ## Usage
 
 1. Clone this project and then cd to the project folder;
-   
-2. Init the server git submodule:
-```
-$ git submodule init
-$ git submodule update --recursive
-```
 
-3. Now just run the main script file:
+2. Now just run the main script file:
 ```
 $ bash ./run.sh
 
@@ -38,7 +32,7 @@ Make sure you have installed these apps successfully before use this project:
 3. Module:network
    * [curl](https://curl.se/download.html)
    * [python3](https://www.python.org/downloads/)
-   * [pip3 for python](https://pip.pypa.io/en/stable/installing/)
+   * [pip3 for python3](https://pip.pypa.io/en/stable/installing/)
    * [httperf](https://github.com/httperf/httperf)
    * [nmap](https://nmap.org/download.html)
    * [siege](https://github.com/JoeDog/siege)
