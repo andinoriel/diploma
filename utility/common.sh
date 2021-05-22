@@ -181,7 +181,7 @@ network_run_test_server() {
 }
 
 network_stop_test_server() {
-  curl --silent -X GET localhost:4723/stop
+  pkill gunicorn
 }
 
 RESOLVE_FUNC_CALL $@
