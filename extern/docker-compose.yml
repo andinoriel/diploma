@@ -1,0 +1,12 @@
+# For testing purposes only
+
+version: '3.4'
+
+services:
+  diploma:
+    image: diploma
+    ports:
+      - "4723:4723"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
