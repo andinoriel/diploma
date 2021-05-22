@@ -38,6 +38,8 @@ dialog_module_network_main() {
           nohup bash -c \
             "PROJ_ROOT_DIR=$PROJ_ROOT_DIR; source $PROJ_ROOT_DIR/utility/common.sh network_run_test_server" &>$log &
           server_online=1
+
+          $DIALOG --title "Success" --msgbox "\nTest server is available on https://127.0.0.1:4723" 7 55 3>&1 1>&2 2>&3
         fi
         ;;
 
