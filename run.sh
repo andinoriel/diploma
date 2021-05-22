@@ -12,6 +12,10 @@ export DIALOGRC=$PROJ_ROOT_DIR/utility/.default.dialogrc
 
 app_cleanup() {
   rm -rf $PROJ_ROOT_DIR/out/*.log
+
+  truecrypt -t -d # #?
+  vearcrypt -t -d # #?
+
   source $PROJ_ROOT_DIR/utility/common.sh network_stop_test_server
 
   unset DIALOGRC

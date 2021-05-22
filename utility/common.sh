@@ -181,7 +181,7 @@ network_run_test_server() {
 }
 
 network_stop_test_server() {
-  curl -X GET localhost:4723/stop
+  curl --silent -X GET localhost:4723/stop
 }
 
 RESOLVE_FUNC_CALL $@
