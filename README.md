@@ -28,20 +28,54 @@ Make sure you have installed these apps successfully before use this project:
 2. Module:encryption
    * [truecrypt](https://www.truecrypt71a.com/downloads/)
    * [veracrypt](https://www.veracrypt.fr/en/Downloads.html)
-  
+
 3. Module:network
    * [curl](https://curl.se/download.html)
    * [python3](https://www.python.org/downloads/)
    * [pip3 for python3](https://pip.pypa.io/en/stable/installing/)
+   * [gunicorn for python3](https://gunicorn.org/)
    * [httperf](https://github.com/httperf/httperf)
    * [nmap](https://nmap.org/download.html)
    * [siege](https://github.com/JoeDog/siege)
+
+  > Note than you also have ability to use python venv test server for testing purposes: [diploma-nms](https://github.com/andinoriel/diploma-nms)
 
 4. Module:restore
    * [ext4magic](https://sourceforge.net/projects/ext4magic/)
    * [foremost](https://sourceforge.net/projects/foremost/)
    * [scalpel](https://github.com/sleuthkit/scalpel)
 
+
+## Test server benchmarking
+
+You can use benchmark for provided test server using it as a containerized docker image and testing it using (Google cAdvisor)[https://github.com/google/cadvisor]. For this:
+
+1. Install [docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/);
+
+2. Run the initial build of the environment for the test server:
+```
+$ cd ./extern
+$ docker-compose build
+```
+
+3. Run the test server:
+```
+$ docker-compose up
+```
+
+4. Now run the Google cAdvisor utility using this command:
+```
+$ sudo docker run \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:rw \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --publish=8080:8080 \
+  --name=cadvisor \
+  gcr.io/cadvisor/cadvisor:v0.37.5
+```
+
+5. You've done! Test server is now online and await for clients on http://127.0.0.1:4723; you can inspect the running containerized test server on http://127.0.0.1:8080/docker/: just choose the 'extern_diploma_1' (or something like this) container.
 
 ## Screenshots
 
@@ -71,6 +105,10 @@ Make sure you have installed these apps successfully before use this project:
    <img src="screenshots/2.3.1 - Restore.png" width="1280"/>
    <img src="screenshots/2.3.2 - Restore.png" width="1280"/>
    <img src="screenshots/2.3.3 - Restore.png" width="1280"/>
+
+   <img src="screenshots/cAdvisor - CPU.png" width="1280"/>
+   <img src="screenshots/cAdvisor - Memory.png" width="1280"/>
+   <img src="screenshots/cAdvisor - Network.png" width="1280"/>
 </details>
 
 ## License
