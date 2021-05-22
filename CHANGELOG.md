@@ -1,3 +1,14 @@
+## [1.2.0] - 2021-05-22
+
+### Added
+* docker-compose rules to containerizing test server
+
+### Changed
+* Test server is now using gunicorn
+
+### Fixed
+* Some bugs
+
 ## [1.1.1] - 2021-05-17
 
 ## Fixed
