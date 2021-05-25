@@ -75,40 +75,47 @@ $ sudo docker run \
   gcr.io/cadvisor/cadvisor:v0.37.5
 ```
 
-1. You've done! Test server is now online and await for clients on http://127.0.0.1:4723; you can inspect the running containerized test server on http://127.0.0.1:8080/docker/ - just choose the 'extern_diploma_1' (or something like this).
+5. Further, to start and stop the container use:
+```
+$ sudo docker container start cadvisor
+$ sudo docker container stop cadvisor
+```
+
+6. You've done! Test server is now online and await for clients on http://127.0.0.1:4723; you can inspect the running containerized test server on http://127.0.0.1:8080/docker/ - just choose the 'extern_diploma_1' (or something like this).
 
 ## Screenshots
 
 <details>
    <summary>Expand</summary>
-   <img src="screenshots/Ask root.png" width="1280"/>
-   <img src="screenshots/1 - hello1.png" width="1280"/>
-   <img src="screenshots/1 - hello2.png" width="1280"/>
-   <img src="screenshots/2 - Main menu.png" width="1280"/>
-   <img src="screenshots/2.1 - Menu.png" width="1280"/>
-   <img src="screenshots/2.1.1 - Menu.png" width="1280"/>
-   <img src="screenshots/2.1.1.1 - Menu.png" width="1280"/>
-   <img src="screenshots/2.1.1.1 - FD path dialog.png" width="1280"/>
-   <img src="screenshots/2.1.1.1 - Algorithm dialog.png" width="1280"/>
-   <img src="screenshots/2.1.1.1 - Password dialog.png" width="1280"/>
-   <img src="screenshots/2.1.1.1 - Encryption.png" width="1280"/>
-   <img src="screenshots/2.1.2 - Benchmark.png" width="1280"/>
-   <img src="screenshots/2.2 - Menu.png" width="1280"/>
-   <img src="screenshots/2.2.1 - Menu.png" width="1280"/>
-   <img src="screenshots/2.2.1 - Scan.png" width="1280"/>
-   <img src="screenshots/2.2.2 - Menu.png" width="1280"/>
-   <img src="screenshots/2.2.2 - Test.png" width="1280"/>
-   <img src="screenshots/2.2.3 - Menu.png" width="1280"/>
-   <img src="screenshots/2.2.3 - Test.png" width="1280"/>
-   <img src="screenshots/2.3 - Menu.png" width="1280"/>
-   <img src="screenshots/2.3.1 - Menu.png" width="1280"/>
-   <img src="screenshots/2.3.1 - Restore.png" width="1280"/>
-   <img src="screenshots/2.3.2 - Restore.png" width="1280"/>
-   <img src="screenshots/2.3.3 - Restore.png" width="1280"/>
-
-   <img src="screenshots/cAdvisor - CPU.png" width="1280"/>
-   <img src="screenshots/cAdvisor - Memory.png" width="1280"/>
-   <img src="screenshots/cAdvisor - Network.png" width="1280"/>
+   <p align="center">
+      <img src="screenshots/Ask root.png" width="1280"/>
+      <img src="screenshots/1 - hello1.png" width="1280"/>
+      <img src="screenshots/1 - hello2.png" width="1280"/>
+      <img src="screenshots/2 - Main menu.png" width="1280"/>
+      <img src="screenshots/2.1 - Menu.png" width="1280"/>
+      <img src="screenshots/2.1.1 - Menu.png" width="1280"/>
+      <img src="screenshots/2.1.1.1 - Menu.png" width="1280"/>
+      <img src="screenshots/2.1.1.1 - FD path dialog.png" width="1280"/>
+      <img src="screenshots/2.1.1.1 - Algorithm dialog.png" width="1280"/>
+      <img src="screenshots/2.1.1.1 - Password dialog.png" width="1280"/>
+      <img src="screenshots/2.1.1.1 - Encryption.png" width="1280"/>
+      <img src="screenshots/2.1.2 - Benchmark.png" width="1280"/>
+      <img src="screenshots/2.2 - Menu.png" width="1280"/>
+      <img src="screenshots/2.2.1 - Menu.png" width="1280"/>
+      <img src="screenshots/2.2.1 - Scan.png" width="1280"/>
+      <img src="screenshots/2.2.2 - Menu.png" width="1280"/>
+      <img src="screenshots/2.2.2 - Test.png" width="1280"/>
+      <img src="screenshots/2.2.3 - Menu.png" width="1280"/>
+      <img src="screenshots/2.2.3 - Test.png" width="1280"/>
+      <img src="screenshots/2.3 - Menu.png" width="1280"/>
+      <img src="screenshots/2.3.1 - Menu.png" width="1280"/>
+      <img src="screenshots/2.3.1 - Restore.png" width="1280"/>
+      <img src="screenshots/2.3.2 - Restore.png" width="1280"/>
+      <img src="screenshots/2.3.3 - Restore.png" width="1280"/>
+      <img src="screenshots/cAdvisor - CPU.png" width="1280"/>
+      <img src="screenshots/cAdvisor - Memory.png" width="1280"/>
+      <img src="screenshots/cAdvisor - Network.png" width="1280"/>
+   </p>
 </details>
 
 ## License
