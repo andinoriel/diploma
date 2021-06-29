@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: veracrypt:bench
+#   LOCAL ENTRY POINT: modules_encryption_veracrypt_bench
+#
+#   veracrypt
+#   |-- veracrypt.sh
+#   |-- bench.sh *CURRENT*
+#   |-- encryption.sh
+#   |-- decryption.sh
+#
+#   COMMENT: encryption:veracrypt benchmarking
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 modules_encryption_veracrypt_bench_inner() {

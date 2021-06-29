@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   MODULE: extern:server
+#   LOCAL ENTRY POINT: *multiple*
+#
+#   extern
+#   |-- docker-compose.yml
+#   |-- Dockerfile
+#   |-- server.py
+#   |-- server.sh *CURRENT*
+#
+#   COMMENT: functions to work with test server
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 init() {

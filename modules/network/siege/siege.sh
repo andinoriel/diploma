@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: siege:siege
+#   LOCAL ENTRY POINT: dialog_modules_network_siege_main
+#
+#   siege
+#   |-- siege.sh *CURRENT*
+#
+#   COMMENT: network:siege module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 check_input() {

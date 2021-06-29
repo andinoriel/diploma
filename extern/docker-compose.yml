@@ -1,6 +1,21 @@
 # For testing purposes only
 
-version: '3.4'
+# =================================================================
+#
+#   MODULE: docker-compose:docker-compose
+#   LOCAL ENTRY POINT: .
+#
+#   extern
+#   |-- docker-compose.yml *CURRENT*
+#   |-- Dockerfile
+#   |-- server.py
+#   |-- server.sh
+#
+#   COMMENT: compose rules for the test server
+#
+# =================================================================
+
+version: '3'
 
 services:
   diploma:

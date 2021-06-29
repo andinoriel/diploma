@@ -1,5 +1,20 @@
 # For testing purposes only
 
+# =================================================================
+#
+#   MODULE: docker-compose:Dockerfile
+#   LOCAL ENTRY POINT: .
+#
+#   extern
+#   |-- docker-compose.yml
+#   |-- Dockerfile *CURRENT*
+#   |-- server.py
+#   |-- server.sh
+#
+#   COMMENT: image build rules for the test server
+#
+# =================================================================
+
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-slim-buster
 

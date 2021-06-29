@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: veracrypt:decryption
+#   LOCAL ENTRY POINT: dialog_modules_encryption_veracrypt_decrypt
+#
+#   veracrypt
+#   |-- veracrypt.sh
+#   |-- bench.sh
+#   |-- encryption.sh
+#   |-- decryption.sh *CURRENT*
+#
+#   COMMENT: encryption:veracrypt decrypt menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_encryption_veracrypt_decrypt() {

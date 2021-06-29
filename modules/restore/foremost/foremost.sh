@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: foremost:foremost
+#   LOCAL ENTRY POINT: dialog_modules_restore_foremost_main
+#
+#   foremost
+#   |-- foremost.sh *CURRENT*
+#
+#   COMMENT: restore:foremost module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_restore_foremost_main() {

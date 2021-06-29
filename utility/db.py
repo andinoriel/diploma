@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
 
+# =================================================================
+#
+#   MODULE: utility:db
+#   LOCAL ENTRY POINT: .
+#
+#   utility
+#   |-- common.sh
+#   |-- db.py *CURRENT*
+#   |-- utility.sh
+#
+#   COMMENT: python DB log accessor
+#
+# =================================================================
+
 import argparse
 import datetime
 import sqlite3

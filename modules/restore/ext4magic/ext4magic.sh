@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: ext4magic:ext4magic
+#   LOCAL ENTRY POINT: dialog_modules_restore_ext4magic_main
+#
+#   ext4magic
+#   |-- ext4magic.sh *CURRENT*
+#
+#   COMMENT: restore:ext4magic module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_restore_ext4magic_main() {

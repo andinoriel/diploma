@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   MODULE: utility:common
+#   LOCAL ENTRY POINT: *multiple*
+#
+#   utility
+#   |-- common.sh *CURRENT*
+#   |-- db.py
+#   |-- utility.sh
+#
+#   COMMENT: common DIALOG functions etc
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_input_path() {

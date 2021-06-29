@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: truecrypt:bench
+#   LOCAL ENTRY POINT: modules_encryption_truecrypt_bench
+#
+#   truecrypt
+#   |-- truecrypt.sh
+#   |-- bench.sh *CURRENT*
+#   |-- encryption.sh
+#   |-- decryption.sh
+#
+#   COMMENT: encryption:truecrypt benchmarking
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 modules_encryption_truecrypt_bench_inner() {

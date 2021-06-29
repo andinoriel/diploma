@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: truecrypt:truecrypt
+#   LOCAL ENTRY POINT: dialog_modules_encryption_truecrypt_main
+#
+#   truecrypt
+#   |-- truecrypt.sh *CURRENT*
+#   |-- bench.sh
+#   |-- encryption.sh
+#   |-- decryption.sh
+#
+#   COMMENT: encryption:truecrypt menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_encryption_truecrypt_main() {

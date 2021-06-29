@@ -1,5 +1,20 @@
 #!/usr/bin/env python3
 
+# =================================================================
+#
+#   MODULE: extern:server
+#   LOCAL ENTRY POINT: .
+#
+#   extern
+#   |-- docker-compose.yml
+#   |-- Dockerfile
+#   |-- server.py *CURRENT*
+#   |-- server.sh
+#
+#   COMMENT: test server that giving random KB of data
+#
+# =================================================================
+
 # see more https://github.com/andinoriel/diploma-nms
 
 import falcon

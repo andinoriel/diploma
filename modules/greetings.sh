@@ -1,11 +1,27 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   TOP-MODULE: greetings:greetings
+#   LOCAL ENTRY POINT: dialog_greetings
+#
+#   modules
+#   |-- encryption
+#   |-- network
+#   |-- restore
+#   |-- greetings.sh *CURRENT*
+#   |-- modules.sh
+#
+#   COMMENT: greetings user DIALOG with copyright and disclaimer
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_greetings() {
   hello="
-    Diploma project designed to interactively demonstrate the main 
-    aspects of information security using the most popular and 
+    Diploma project designed to interactively demonstrate the main
+    aspects of information security using the most popular and
     demanded open source utilities.
 
     -------------- 2021 Mykola Symon - Copyright (c) --------------

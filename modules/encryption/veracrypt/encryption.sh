@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: veracrypt:encryption
+#   LOCAL ENTRY POINT: dialog_modules_encryption_veracrypt_encrypt
+#
+#   veracrypt
+#   |-- veracrypt.sh
+#   |-- bench.sh
+#   |-- encryption.sh *CURRENT*
+#   |-- decryption.sh
+#
+#   COMMENT: encryption:veracrypt encrypt menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 choose_encalg() {

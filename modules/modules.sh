@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   TOP-MODULE: modules:modules
+#   LOCAL ENTRY POINT: dialog_modules_main
+#
+#   modules
+#   |-- encryption
+#   |-- network
+#   |-- restore
+#   |-- greetings.sh
+#   |-- modules.sh *CURRENT*
+#
+#   COMMENT: main modules dialog
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_main() {

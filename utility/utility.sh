@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   MODULE: utility:utility
+#   LOCAL ENTRY POINT: *multiple*
+#
+#   utility
+#   |-- common.sh
+#   |-- db.py
+#   |-- utility.sh *CURRENT*
+#
+#   COMMENT: common variables, some core functions
+#
+# =================================================================
+
 : ${DIALOG=${DIALOG=dialog}}
 
 : ${DIALOG_OK=0}

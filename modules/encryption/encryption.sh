@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   MODULE: encryption
+#   LOCAL ENTRY POINT: dialog_modules_encryption_main
+#
+#   encryption
+#   |-- truecrypt
+#   |-- veracrypt
+#   |-- encryption.sh *CURRENT*
+#
+#   COMMENT: encryption module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_encryption_main() {

@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   MODULE: restore
+#   LOCAL ENTRY POINT: dialog_module_restore_main
+#
+#   restore
+#   |-- ext4magic
+#   |-- foremost
+#   |-- scalpel
+#   |-- restore.sh *CURRENT*
+#
+#   COMMENT: restore module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_module_restore_main() {

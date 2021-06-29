@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: scalpel:scalpel
+#   LOCAL ENTRY POINT: dialog_modules_restore_scalpel_main
+#
+#   scalpel
+#   |-- scalpel.sh *CURRENT*
+#
+#   COMMENT: restore:scalpel module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_modules_restore_scalpel_main() {

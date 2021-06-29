@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   MODULE: network
+#   LOCAL ENTRY POINT: dialog_module_network_main
+#
+#   network
+#   |-- httperf
+#   |-- nmap
+#   |-- siege
+#   |-- network.sh *CURRENT*
+#
+#   COMMENT: network module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 dialog_module_network_main() {

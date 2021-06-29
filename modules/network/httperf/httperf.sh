@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: httperf:httperf
+#   LOCAL ENTRY POINT: dialog_modules_network_httperf_main
+#
+#   httperf
+#   |-- httperf.sh *CURRENT*
+#
+#   COMMENT: network:httperf module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 check_input() {

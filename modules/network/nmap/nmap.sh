@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   SUBMODULE: nmap:nmap
+#   LOCAL ENTRY POINT: dialog_modules_network_nmap_main
+#
+#   nmap
+#   |-- nmap.sh *CURRENT*
+#
+#   COMMENT: network:nmap module menu DIALOG
+#
+# =================================================================
+
 source $PROJ_ROOT_DIR/utility/utility.sh
 
 nmap_scan() {

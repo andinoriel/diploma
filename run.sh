@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# =================================================================
+#
+#   TOP-LEVEL: run:run
+#   LOCAL ENTRY POINT: .
+#
+#   ./
+#   |-- extern
+#   |-- modules
+#   |-- utility
+#   |-- run.sh *CURRENT*
+#
+#   COMMENT: application entry point
+#
+# =================================================================
+
 if [ "$EUID" -eq 0 ]; then
   echo "Running as root is not allowed"
   exit $RC_ERROR
