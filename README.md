@@ -86,37 +86,44 @@ $ sudo docker container stop cadvisor
 ## Screenshots
 
 <details>
-   <summary>Expand</summary>
-   <p align="center">
-      <img src="screenshots/Ask root.png" width="1280"/>
-      <img src="screenshots/1 - hello1.png" width="1280"/>
-      <img src="screenshots/1 - hello2.png" width="1280"/>
-      <img src="screenshots/2 - Main menu.png" width="1280"/>
-      <img src="screenshots/2.1 - Menu.png" width="1280"/>
-      <img src="screenshots/2.1.1 - Menu.png" width="1280"/>
-      <img src="screenshots/2.1.1.1 - Menu.png" width="1280"/>
-      <img src="screenshots/2.1.1.1 - FD path dialog.png" width="1280"/>
-      <img src="screenshots/2.1.1.1 - Algorithm dialog.png" width="1280"/>
-      <img src="screenshots/2.1.1.1 - Password dialog.png" width="1280"/>
-      <img src="screenshots/2.1.1.1 - Encryption.png" width="1280"/>
-      <img src="screenshots/2.1.2 - Benchmark.png" width="1280"/>
-      <img src="screenshots/2.2 - Menu.png" width="1280"/>
-      <img src="screenshots/2.2.1 - Menu.png" width="1280"/>
-      <img src="screenshots/2.2.1 - Scan.png" width="1280"/>
-      <img src="screenshots/2.2.2 - Menu.png" width="1280"/>
-      <img src="screenshots/2.2.2 - Test.png" width="1280"/>
-      <img src="screenshots/2.2.3 - Menu.png" width="1280"/>
-      <img src="screenshots/2.2.3 - Test.png" width="1280"/>
-      <img src="screenshots/2.3 - Menu.png" width="1280"/>
-      <img src="screenshots/2.3.1 - Menu.png" width="1280"/>
-      <img src="screenshots/2.3.1 - Restore.png" width="1280"/>
-      <img src="screenshots/2.3.2 - Restore.png" width="1280"/>
-      <img src="screenshots/2.3.3 - Restore.png" width="1280"/>
-      <img src="screenshots/cAdvisor - CPU.png" width="1280"/>
-      <img src="screenshots/cAdvisor - Memory.png" width="1280"/>
-      <img src="screenshots/cAdvisor - Network.png" width="1280"/>
-   </p>
+  <summary>Expand</summary>
+
+  <p align="center">
+    <img src="screenshots/Ask root.png" width="1280"/>
+    <img src="screenshots/1 - hello1.png" width="1280"/>
+    <img src="screenshots/1 - hello2.png" width="1280"/>
+    <img src="screenshots/2 - Main menu.png" width="1280"/>
+    <img src="screenshots/2.1 - Menu.png" width="1280"/>
+    <img src="screenshots/2.1.1 - Menu.png" width="1280"/>
+    <img src="screenshots/2.1.1.1 - Menu.png" width="1280"/>
+    <img src="screenshots/2.1.1.1 - FD path dialog.png" width="1280"/>
+    <img src="screenshots/2.1.1.1 - Algorithm dialog.png" width="1280"/>
+    <img src="screenshots/2.1.1.1 - Password dialog.png" width="1280"/>
+    <img src="screenshots/2.1.1.1 - Encryption.png" width="1280"/>
+    <img src="screenshots/2.1.2 - Benchmark.png" width="1280"/>
+    <img src="screenshots/2.2 - Menu.png" width="1280"/>
+    <img src="screenshots/2.2.1 - Menu.png" width="1280"/>
+    <img src="screenshots/2.2.1 - Scan.png" width="1280"/>
+    <img src="screenshots/2.2.2 - Menu.png" width="1280"/>
+    <img src="screenshots/2.2.2 - Test.png" width="1280"/>
+    <img src="screenshots/2.2.3 - Menu.png" width="1280"/>
+    <img src="screenshots/2.2.3 - Test.png" width="1280"/>
+    <img src="screenshots/2.3 - Menu.png" width="1280"/>
+    <img src="screenshots/2.3.1 - Menu.png" width="1280"/>
+    <img src="screenshots/2.3.1 - Restore.png" width="1280"/>
+    <img src="screenshots/2.3.2 - Restore.png" width="1280"/>
+    <img src="screenshots/2.3.3 - Restore.png" width="1280"/>
+    <img src="screenshots/cAdvisor - CPU.png" width="1280"/>
+    <img src="screenshots/cAdvisor - Memory.png" width="1280"/>
+    <img src="screenshots/cAdvisor - Network.png" width="1280"/>
+  </p>
 </details>
+
+## Credits
+
+My thanks to the developers of the [Docker](https://www.docker.com/company), [Bash](https://www.gnu.org/software/bash/) and [Python](https://www.python.org/psf-landing/).
+
+Also thanks to the developers of all the utilities mentioned in the [requirements](#requirements) section
 
 ## License
 
